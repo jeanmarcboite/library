@@ -29,7 +29,10 @@ to quickly create a Cobra application.`,
 
 		log.Debug().Str("args", fmt.Sprint(args)).Msg("lookup")
 
-		// debug, _ := cmd.Flags().GetBool("debug")
+		debug, _ := cmd.Flags().GetBool("debug")
+		if debug {
+			books.SetLogLevel(zerolog.DebugLevel)
+		}
 
 		for _, filename := range args {
 			work, error := books.WorkFromFilename(filename)
