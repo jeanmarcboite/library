@@ -10,7 +10,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${fileDirname}",
+            "program": "/home/box/my/library",
             "env": {},
             "args": ["lookup", "-d" , "/home/box/Downloads/epub/LesBienveillantes.epub", "--output" ,"/tmp/afaco.json"]
         }
