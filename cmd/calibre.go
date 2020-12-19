@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"os"
@@ -29,10 +30,13 @@ var calibreCmd = &cobra.Command{
 		log.Debug().Str("args", fmt.Sprint(args)).Msg("calibre")
 
 		for _, filename := range args {
-			_, err := calibre.ReadDB(filename, debug)
+			calibreDB, err := calibre.ReadDB(filename, debug)
 
 			if err != nil {
 				log.Error().Str("error", err.Error()).Msg("calibre")
+			} else {
+				b, _ := json.MarshalIndent(calibreDB, "", "  ")
+				fmt.Println(string(b))
 			}
 		}
 	},
