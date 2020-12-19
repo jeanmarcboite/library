@@ -10,9 +10,6 @@ import (
 
 	"github.com/jeanmarcboite/books/models/calibre"
 	"github.com/spf13/cobra"
-
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
 
 // reads calibre metadata
@@ -22,41 +19,36 @@ var calibreCmd = &cobra.Command{
 	Long:  "parse calibre db",
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-
-		log.Debug().Str("args", fmt.Sprint(args)).Msg("ls")
-
+		// Default level for this example is info, unless debug flag is present
 		debug, _ := cmd.Flags().GetBool("debug")
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+		if debug {
+			zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		}
+
+		log.Debug().Str("args", fmt.Sprint(args)).Msg("calibre")
 
 		for _, filename := range args {
-			db, err := gorm.Open(sqlite.Open(filename), &gorm.Config{})
+			_, err := calibre.ReadDB(filename, debug)
+
 			if err != nil {
-				panic("failed to connect database")
-			}
-			var books []calibre.Book
-			booksk := make(map[uint]int)
-
-			if result := db.Find(&books); result.Error != nil {
-				if debug {
-					fmt.Printf("%+v\n", result)
-				}
-			}
-			for row, book := range books {
-				booksk[book.ID] = row
-			}
-			var comments []calibre.Comment
-			if result := db.Find(&comments); result.Error != nil {
-				fmt.Printf("%+v\n", result)
-			} else {
-				for _, comment := range comments {
-					books[booksk[comment.Book]].Comment = comment.Text
-				}
-			}
-
-			fmt.Println("{}", books)
-
-			for _, v := range booksk {
-				fmt.Printf("%+v\n", books[v])
+				log.Error().Str("error", err.Error()).Msg("calibre")
 			}
 		}
 	},
+}
+
+func init() {
+	rootCmd.AddCommand(calibreCmd)
+	calibreCmd.Flags().BoolP("debug", "d", false, "Print xml parsed to stdout")
+
+	// Here you will define your flags and configuration settings.
+
+	// Cobra supports Persistent Flags which will work for this command
+	// and all subcommands, e.g.:
+	// serverCmd.PersistentFlags().String("foo", "", "A help for foo")
+
+	// Cobra supports local flags which will only run when this command
+	// is called directly, e.g.:
+	// serverCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
