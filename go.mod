@@ -7,6 +7,7 @@ replace github.com/jeanmarcboite/epub => ../epub
 replace github.com/jeanmarcboite/books => ../books
 
 require (
+	github.com/go-extras/tahwil v1.0.0
 	github.com/jeanmarcboite/books v0.0.0-00010101000000-000000000000
 	github.com/jeanmarcboite/epub v0.0.0-00010101000000-000000000000
 	github.com/jmoiron/sqlx v1.2.0 // indirect
