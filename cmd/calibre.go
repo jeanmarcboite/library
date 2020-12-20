@@ -24,8 +24,11 @@ var calibreCmd = &cobra.Command{
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 		// Default level for this example is info, unless debug flag is present
 		debug, _ := cmd.Flags().GetBool("debug")
-		print_data, _ := cmd.Flags().GetBool("print")
+		print_database, _ := cmd.Flags().GetBool("print")
+		print_books, _ := cmd.Flags().GetBool("books")
+		print_authors, _ := cmd.Flags().GetBool("authors")
 		print_tahwil, _ := cmd.Flags().GetBool("tahwil")
+
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 		if debug {
 			zerolog.SetGlobalLevel(zerolog.DebugLevel)
@@ -39,8 +42,14 @@ var calibreCmd = &cobra.Command{
 			if err != nil {
 				log.Error().Str("error", err.Error()).Msg("calibre")
 			} else {
-				if print_data {
+				if print_database {
 					fmt.Println(SprintJSON(calibreDB))
+				}
+				if print_books {
+					fmt.Println(SprintJSON(calibreDB.Books))
+				}
+				if print_authors {
+					fmt.Println(SprintJSON(calibreDB.Authors))
 				}
 				if print_tahwil {
 					v, err := tahwil.ToValue(calibreDB)
@@ -70,6 +79,8 @@ func init() {
 	rootCmd.AddCommand(calibreCmd)
 	calibreCmd.Flags().BoolP("debug", "d", false, "Print debug info")
 	calibreCmd.Flags().BoolP("print", "p", false, "Print database parsed to stdout")
+	calibreCmd.Flags().BoolP("authors", "a", false, "Print authors parsed to stdout")
+	calibreCmd.Flags().BoolP("books", "b", false, "Print books parsed to stdout")
 	calibreCmd.Flags().BoolP("tahwil", "t", false, "Print database parsed to stdout")
 
 	// Here you will define your flags and configuration settings.
