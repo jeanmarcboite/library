@@ -27,6 +27,7 @@ var calibreCmd = &cobra.Command{
 		print_database, _ := cmd.Flags().GetBool("print")
 		print_books, _ := cmd.Flags().GetBool("books")
 		print_authors, _ := cmd.Flags().GetBool("authors")
+		print_custom_columns, _ := cmd.Flags().GetBool("custom_columns")
 		print_tahwil, _ := cmd.Flags().GetBool("tahwil")
 
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
@@ -50,6 +51,9 @@ var calibreCmd = &cobra.Command{
 				}
 				if print_authors {
 					fmt.Println(SprintJSON(calibreDB.Authors))
+				}
+				if print_custom_columns {
+					fmt.Println(SprintJSON(calibreDB.CustomColumns))
 				}
 				if print_tahwil {
 					v, err := tahwil.ToValue(calibreDB)
@@ -81,6 +85,7 @@ func init() {
 	calibreCmd.Flags().BoolP("print", "p", false, "Print database parsed to stdout")
 	calibreCmd.Flags().BoolP("authors", "a", false, "Print authors parsed to stdout")
 	calibreCmd.Flags().BoolP("books", "b", false, "Print books parsed to stdout")
+	calibreCmd.Flags().BoolP("custom_columns", "c", false, "Print custom columns parsed to stdout")
 	calibreCmd.Flags().BoolP("tahwil", "t", false, "Print database parsed to stdout")
 
 	// Here you will define your flags and configuration settings.
