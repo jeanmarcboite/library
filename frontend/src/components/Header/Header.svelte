@@ -2,6 +2,7 @@
     import Hamburger from "./Hamburger.svelte";
     import Button from "./Button.svelte";
     import TiCog from "svelte-icons/ti/TiCog.svelte";
+    import FileMenu from "./FileMenu.svelte";
 </script>
 
 <style>
@@ -18,6 +19,9 @@
             <div class="block m-2 sm:hidden">
                 <Hamburger />
             </div>
+            <ul class="hidden sm:flex sm:flex-row" id="mobileMenu">
+                <FileMenu />
+            </ul>
             <div class="flex-grow" />
             <div class="flex flex-row flex-grow-0">
                 <button class="flex-grow-0 m-2 icon">
