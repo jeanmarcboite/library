@@ -1,0 +1,51 @@
+{
+    "name": "bookins",
+    "author": "Jean-Marc Boite<jeanmarcboite@gmail.com>",
+    "license": "WTFPL",
+    "scripts": {
+      "build": "rollup -c rollup.config.js",
+      "dev": "rollup -w -c rollup.config.js",
+      "start": "sirv public"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.11.6",
+      "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+      "@babel/plugin-transform-runtime": "^7.11.5",
+      "@babel/preset-env": "^7.11.5",
+      "@rollup/plugin-commonjs": "^14.0.0",
+      "@rollup/plugin-image": "^2.0.5",
+      "@rollup/plugin-node-resolve": "^8.0.0",
+      "@rollup/plugin-typescript": "^8.0.0",
+      "@tailwindcss/custom-forms": "^0.2.1",
+      "@tsconfig/svelte": "^1.0.10",
+      "autoprefixer": "^10.0.4",
+      "core-js": "^3.6.5",
+      "postcss": "^8.1.10",
+      "postcss-cli": "^8.3.0",
+      "postcss-custom-properties": "^10.0.0",
+      "postcss-import": "^13.0.0",
+      "postcss-nested": "^5.0.1",
+      "rollup": "^2.3.4",
+      "rollup-plugin-babel": "^4.4.0",
+      "rollup-plugin-livereload": "^2.0.0",
+      "rollup-plugin-polyfill": "^3.0.0",
+      "rollup-plugin-svelte": "^6.0.0",
+      "rollup-plugin-terser": "^7.0.0",
+      "svelte": "^3.30.0",
+      "svelte-check": "^1.1.17",
+      "svelte-preprocess": "^4.6.1",
+      "tailwindcss": "^2.0.1",
+      "typescript": "^4.1.2"
+    },
+    "dependencies": {
+      "sirv-cli": "^1.0.0",
+      "svelte-click-outside": "^1.0.0",
+      "svelte-file-dropzone": "^0.0.12",
+      "svelte-icons": "^2.1.0",
+      "svelte-json-tree-auto": "^0.1.0",
+      "svelte-notifications": "^0.9.9",
+      "svelte-simple-modal": "^0.6.0",
+      "svelte-tabs": "^1.1.0"
+    }
+  }
+  
