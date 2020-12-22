@@ -6,3 +6,4 @@ import (
 
 // Templates -- html templates
 var Templates = packr.New("templates", "./templates")
+var Config = packr.New("config", "./config")

@@ -12,9 +12,11 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
-	"github.com/jeanmarcboite/library/assets"
-
 	"github.com/gorilla/mux"
+	"github.com/jeanmarcboite/library/assets"
+	"github.com/knadh/koanf"
+	"github.com/knadh/koanf/parsers/yaml"
+	"github.com/knadh/koanf/providers/rawbytes"
 	"github.com/spf13/cobra"
 	"github.com/webview/webview"
 )
@@ -52,6 +54,17 @@ var guiCmd = &cobra.Command{
 		err := http.ListenAndServe(listenTo, r)
 		log.Fatal().Err(err).Msg("gui")
 	},
+}
+
+// Koanf -- Global koanf instance. Use . as the key path delimiter. This can be / or anything.
+var Koanf = koanf.New(".")
+
+func init() {
+	conf, err := assets.Config.Find("gui.yaml")
+	if err == nil {
+		Koanf.Load(rawbytes.Provider(conf), yaml.Parser())
+		// fmt.Println(string(conf))
+	}
 }
 
 func init() {
@@ -95,7 +108,7 @@ func runWebview(url string) {
 	w := webview.New(debug)
 	defer w.Destroy()
 	w.SetTitle("Minimal webview example")
-	w.SetSize(800, 600, webview.HintNone)
+	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Navigate(url)
 	w.Run()
 }

@@ -12,6 +12,7 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/jeanmarcboite/books v0.0.0-00010101000000-000000000000
 	github.com/jeanmarcboite/epub v0.0.0-00010101000000-000000000000
+	github.com/knadh/koanf v0.14.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/rs/zerolog v1.20.0
 	github.com/spf13/cobra v1.1.1
