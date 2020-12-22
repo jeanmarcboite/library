@@ -63,6 +63,7 @@ func init() {
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	log.Debug().Msg("root handler")
+	//w.Header().Set("Cache-Control", "no-cache")
 	frontendTemplate, err := assets.Templates.Find("frontend.html")
 	if err == nil {
 		tmpl, errt := template.New("tmpl").Parse(string(frontendTemplate))

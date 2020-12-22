@@ -5,7 +5,7 @@
 
 <style>
     #app {
-        height: 90vh;
+        height: 100vh;
     }
     header {
         overflow: visible;
@@ -18,7 +18,7 @@
 
     footer {
         width: 100%;
-        background-color: darkgreen;
+        background-color: darkgoldenrod;
     }
 </style>
 
