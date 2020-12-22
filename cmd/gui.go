@@ -43,6 +43,8 @@ var guiCmd = &cobra.Command{
 		port, _ := cmd.Flags().GetInt("port")
 		r := mux.NewRouter()
 		r.HandleFunc("/", RootHandler)
+		r.PathPrefix("/public/").Handler(http.StripPrefix("/public/",
+			http.FileServer(http.Dir("./frontend/public"))))
 		listenTo := fmt.Sprintf(":%d", port)
 		url := "http://localhost" + listenTo
 		fmt.Println("Listen to " + url)
@@ -61,11 +63,15 @@ func init() {
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	log.Debug().Msg("root handler")
-	tpl, err := template.ParseFiles("public/index.html")
-	log.Error().Str("err", err.Error()).Msg("execute")
-
+	frontendTemplate, err := assets.Templates.Find("frontend.html")
 	if err == nil {
-		tpl.Execute(w, nil)
+		tmpl, errt := template.New("tmpl").Parse(string(frontendTemplate))
+		if errt == nil {
+			errt = tmpl.Execute(w, nil)
+		}
+		if errt != nil {
+			fmt.Fprintf(w, "Error template: %s", errt.Error())
+		}
 	} else {
 		errorTemplate, errt := assets.Templates.Find("error.html")
 
