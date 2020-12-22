@@ -4625,7 +4625,7 @@ var app = (function () {
 	    c: function create() {
 	      button = element("button");
 	      if_block.c();
-	      attr_dev(button, "class", "flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white");
+	      attr_dev(button, "class", "flex items-center px-2 py-1 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white");
 	      add_location(button, file, 4, 0, 46);
 	    },
 	    l: function claim(nodes) {
@@ -5338,14 +5338,14 @@ var app = (function () {
 	      div2 = element("div");
 	      button = element("button");
 	      create_component(ticog.$$.fragment);
-	      attr_dev(div0, "class", "block sm:hidden");
+	      attr_dev(div0, "class", "block m-2 sm:hidden");
 	      add_location(div0, file$4, 15, 12, 321);
 	      attr_dev(div1, "class", "flex-grow");
-	      add_location(div1, file$4, 18, 12, 412);
-	      attr_dev(button, "class", "flex-grow-0 m-4 icon svelte-lr5szm");
-	      add_location(button, file$4, 20, 16, 506);
+	      add_location(div1, file$4, 18, 12, 416);
+	      attr_dev(button, "class", "flex-grow-0 m-2 icon svelte-lr5szm");
+	      add_location(button, file$4, 20, 16, 510);
 	      attr_dev(div2, "class", "flex flex-row flex-grow-0");
-	      add_location(div2, file$4, 19, 12, 450);
+	      add_location(div2, file$4, 19, 12, 454);
 	      attr_dev(div3, "class", "flex flex-row");
 	      add_location(div3, file$4, 14, 8, 281);
 	      add_location(nav, file$4, 13, 4, 267);

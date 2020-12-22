@@ -3,7 +3,7 @@
 </script>
 
 <button
-    class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+    class="flex items-center px-2 py-1 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
     {#if menuOpen}
         <svg
             class="w-6 h-6"
