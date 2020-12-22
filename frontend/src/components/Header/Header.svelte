@@ -7,8 +7,8 @@
 <style>
     .icon {
         color: red;
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
     }
 </style>
 

@@ -13,12 +13,12 @@
     }
     main {
         overflow: auto;
-        background-color: cornflowerblue;
+        background-color: burlywood;
     }
 
     footer {
         width: 100%;
-        background-color: darkgoldenrod;
+        background-color: blue;
     }
 </style>
 
@@ -28,6 +28,6 @@
         <Header />
     </header>
 
-    <main class="flex-grow overflow-y">main</main>
+    <main class="flex-grow overflow-y" />
     <footer>Footer</footer>
 </div>
