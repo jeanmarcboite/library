@@ -1,5 +1,4 @@
 <script>
-    import Arrow from "./Arrow.svelte";
     export let menu;
 </script>
 
