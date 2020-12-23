@@ -34,17 +34,16 @@
     }
 </style>
 
-{#if !menu.items}
-    <li class="px-3 py-1 rounded-sm">{menu.name}</li>
-{:else}
-    <li class="relative px-3 py-1 rounded-sm">
-        <button
-            class="flex items-center w-full text-left outline-none focus:outline-none">
-            {#if menu.icon}
-                <span class="m-1 icon">
-                    <svelte:component this={menu.icon} /></span>
-            {/if}
-            <span class="flex-1 pr-1"> {menu.name} </span>
+<li class="relative px-3 py-1 rounded-sm">
+    <button
+        on:click={menu.onclick}
+        class="flex items-center w-full text-left outline-none focus:outline-none">
+        {#if menu.icon}
+            <span class="m-1 icon">
+                <svelte:component this={menu.icon} /></span>
+        {/if}
+        <span class="flex-1 pr-1"> {menu.name} </span>
+        {#if menu.items}
             <span class="mr-auto">
                 <svg
                     class="w-4 h-4 transition duration-150 ease-in-out fill-current"
@@ -54,12 +53,14 @@
                         d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                 </svg>
             </span>
-        </button>
+        {/if}
+    </button>
+    {#if menu.items}
         <ul
             class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm min-w-32 ">
             {#each menu.items as submenu}
                 <svelte:self menu={submenu} />
             {/each}
         </ul>
-    </li>
-{/if}
+    {/if}
+</li>

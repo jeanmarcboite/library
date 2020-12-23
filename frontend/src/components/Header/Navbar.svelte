@@ -3,6 +3,10 @@
     import FaSearch from "svelte-icons/fa/FaSearch.svelte";
     import FaDatabase from "svelte-icons/fa/FaDatabase.svelte";
 
+    const logClick = () => {
+        console.log("click");
+    };
+
     let items = [
         {
             name: "File",
@@ -20,6 +24,7 @@
                 {
                     name: "Load database...",
                     icon: FaDatabase,
+                    onclick: logClick,
                 },
             ],
         },
