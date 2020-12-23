@@ -5235,7 +5235,7 @@ var app = (function () {
 	function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 	function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-	var file$4 = "src/components/Header/Subsubmenu.svelte";
+	var file$4 = "src/components/Header/Menu.svelte";
 
 	function get_each_context(ctx, list, i) {
 	  var child_ctx = ctx.slice();
@@ -5251,7 +5251,7 @@ var app = (function () {
 	  var button;
 	  var span0;
 	  var t0_value =
-	  /*submenu*/
+	  /*menu*/
 	  ctx[0].name + "";
 	  var t0;
 	  var t1;
@@ -5264,8 +5264,8 @@ var app = (function () {
 	    $$inline: true
 	  });
 	  var each_value =
-	  /*submenu*/
-	  ctx[0].menu;
+	  /*menu*/
+	  ctx[0].items;
 	  validate_each_argument(each_value);
 	  var each_blocks = [];
 
@@ -5302,15 +5302,15 @@ var app = (function () {
 	      }
 
 	      attr_dev(span0, "class", "flex-1 pr-1");
-	      add_location(span0, file$4, 27, 12, 640);
+	      add_location(span0, file$4, 27, 12, 632);
 	      attr_dev(span1, "class", "mr-auto");
-	      add_location(span1, file$4, 28, 12, 700);
+	      add_location(span1, file$4, 28, 12, 689);
 	      attr_dev(button, "class", "flex items-center w-full text-left outline-none focus:outline-none");
-	      add_location(button, file$4, 25, 8, 532);
+	      add_location(button, file$4, 25, 8, 524);
 	      attr_dev(ul, "class", "absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left bg-white border rounded-sm min-w-32  svelte-ta7nvw");
-	      add_location(ul, file$4, 32, 8, 795);
+	      add_location(ul, file$4, 32, 8, 784);
 	      attr_dev(li, "class", "relative px-3 py-1 rounded-sm hover:bg-blue-200 svelte-ta7nvw");
-	      add_location(li, file$4, 24, 4, 463);
+	      add_location(li, file$4, 24, 4, 455);
 	    },
 	    m: function mount(target, anchor) {
 	      insert_dev(target, li, anchor);
@@ -5331,17 +5331,17 @@ var app = (function () {
 	    },
 	    p: function update(ctx, dirty) {
 	      if ((!current || dirty &
-	      /*submenu*/
+	      /*menu*/
 	      1) && t0_value !== (t0_value =
-	      /*submenu*/
+	      /*menu*/
 	      ctx[0].name + "")) set_data_dev(t0, t0_value);
 
 	      if (dirty &
-	      /*submenu*/
+	      /*menu*/
 	      1) {
 	        each_value =
-	        /*submenu*/
-	        ctx[0].menu;
+	        /*menu*/
+	        ctx[0].items;
 	        validate_each_argument(each_value);
 
 	        var _i3;
@@ -5407,13 +5407,13 @@ var app = (function () {
 	    ctx: ctx
 	  });
 	  return block;
-	} // (22:0) {#if !submenu.menu}
+	} // (22:0) {#if !menu.items}
 
 
 	function create_if_block$2(ctx) {
 	  var li;
 	  var t_value =
-	  /*submenu*/
+	  /*menu*/
 	  ctx[0].name + "";
 	  var t;
 	  var block = {
@@ -5421,7 +5421,7 @@ var app = (function () {
 	      li = element("li");
 	      t = text(t_value);
 	      attr_dev(li, "class", "px-3 py-1 rounded-sm hover:bg-blue-200");
-	      add_location(li, file$4, 22, 4, 380);
+	      add_location(li, file$4, 22, 4, 375);
 	    },
 	    m: function mount(target, anchor) {
 	      insert_dev(target, li, anchor);
@@ -5429,9 +5429,9 @@ var app = (function () {
 	    },
 	    p: function update(ctx, dirty) {
 	      if (dirty &
-	      /*submenu*/
+	      /*menu*/
 	      1 && t_value !== (t_value =
-	      /*submenu*/
+	      /*menu*/
 	      ctx[0].name + "")) set_data_dev(t, t_value);
 	    },
 	    i: noop,
@@ -5444,59 +5444,59 @@ var app = (function () {
 	    block: block,
 	    id: create_if_block$2.name,
 	    type: "if",
-	    source: "(22:0) {#if !submenu.menu}",
+	    source: "(22:0) {#if !menu.items}",
 	    ctx: ctx
 	  });
 	  return block;
-	} // (35:12) {#each submenu.menu as subsubmenu}
+	} // (35:12) {#each menu.items as submenu}
 
 
 	function create_each_block(ctx) {
-	  var subsubmenu;
+	  var menu_1;
 	  var current;
-	  subsubmenu = new Subsubmenu({
+	  menu_1 = new Menu({
 	    props: {
-	      submenu:
-	      /*subsubmenu*/
+	      menu:
+	      /*submenu*/
 	      ctx[1]
 	    },
 	    $$inline: true
 	  });
 	  var block = {
 	    c: function create() {
-	      create_component(subsubmenu.$$.fragment);
+	      create_component(menu_1.$$.fragment);
 	    },
 	    m: function mount(target, anchor) {
-	      mount_component(subsubmenu, target, anchor);
+	      mount_component(menu_1, target, anchor);
 	      current = true;
 	    },
 	    p: function update(ctx, dirty) {
-	      var subsubmenu_changes = {};
+	      var menu_1_changes = {};
 	      if (dirty &
+	      /*menu*/
+	      1) menu_1_changes.menu =
 	      /*submenu*/
-	      1) subsubmenu_changes.submenu =
-	      /*subsubmenu*/
 	      ctx[1];
-	      subsubmenu.$set(subsubmenu_changes);
+	      menu_1.$set(menu_1_changes);
 	    },
 	    i: function intro(local) {
 	      if (current) return;
-	      transition_in(subsubmenu.$$.fragment, local);
+	      transition_in(menu_1.$$.fragment, local);
 	      current = true;
 	    },
 	    o: function outro(local) {
-	      transition_out(subsubmenu.$$.fragment, local);
+	      transition_out(menu_1.$$.fragment, local);
 	      current = false;
 	    },
 	    d: function destroy(detaching) {
-	      destroy_component(subsubmenu, detaching);
+	      destroy_component(menu_1, detaching);
 	    }
 	  };
 	  dispatch_dev("SvelteRegisterBlock", {
 	    block: block,
 	    id: create_each_block.name,
 	    type: "each",
-	    source: "(35:12) {#each submenu.menu as subsubmenu}",
+	    source: "(35:12) {#each menu.items as submenu}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -5512,8 +5512,8 @@ var app = (function () {
 
 	  function select_block_type(ctx, dirty) {
 	    if (!
-	    /*submenu*/
-	    ctx[0].menu) return 0;
+	    /*menu*/
+	    ctx[0].items) return 0;
 	    return 1;
 	  }
 
@@ -5594,19 +5594,19 @@ var app = (function () {
 	  var _$$props$$$slots = $$props.$$slots,
 	      slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
 	      $$scope = $$props.$$scope;
-	  validate_slots("Subsubmenu", slots, []);
-	  var submenu = $$props.submenu;
-	  var writable_props = ["submenu"];
+	  validate_slots("Menu", slots, []);
+	  var menu = $$props.menu;
+	  var writable_props = ["menu"];
 	  Object.keys($$props).forEach(function (key) {
 	    _newArrowCheck(this, _this4);
 
-	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Subsubmenu> was created with unknown prop '".concat(key, "'"));
+	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Menu> was created with unknown prop '".concat(key, "'"));
 	  }.bind(this));
 
 	  $$self.$$set = function ($$props) {
 	    _newArrowCheck(this, _this4);
 
-	    if ("submenu" in $$props) $$invalidate(0, submenu = $$props.submenu);
+	    if ("menu" in $$props) $$invalidate(0, menu = $$props.menu);
 	  }.bind(this);
 
 	  $$self.$capture_state = function () {
@@ -5614,40 +5614,40 @@ var app = (function () {
 
 	    return {
 	      Arrow: Arrow,
-	      submenu: submenu
+	      menu: menu
 	    };
 	  }.bind(this);
 
 	  $$self.$inject_state = function ($$props) {
 	    _newArrowCheck(this, _this4);
 
-	    if ("submenu" in $$props) $$invalidate(0, submenu = $$props.submenu);
+	    if ("menu" in $$props) $$invalidate(0, menu = $$props.menu);
 	  }.bind(this);
 
 	  if ($$props && "$$inject" in $$props) {
 	    $$self.$inject_state($$props.$$inject);
 	  }
 
-	  return [submenu];
+	  return [menu];
 	}
 
-	var Subsubmenu = /*#__PURE__*/function (_SvelteComponentDev) {
-	  _inherits(Subsubmenu, _SvelteComponentDev);
+	var Menu = /*#__PURE__*/function (_SvelteComponentDev) {
+	  _inherits(Menu, _SvelteComponentDev);
 
-	  var _super = _createSuper$5(Subsubmenu);
+	  var _super = _createSuper$5(Menu);
 
-	  function Subsubmenu(options) {
+	  function Menu(options) {
 	    var _this5;
 
-	    _classCallCheck(this, Subsubmenu);
+	    _classCallCheck(this, Menu);
 
 	    _this5 = _super.call(this, options);
 	    init(_assertThisInitialized(_this5), options, instance$4, create_fragment$4, safe_not_equal, {
-	      submenu: 0
+	      menu: 0
 	    });
 	    dispatch_dev("SvelteRegisterComponent", {
 	      component: _assertThisInitialized(_this5),
-	      tagName: "Subsubmenu",
+	      tagName: "Menu",
 	      options: options,
 	      id: create_fragment$4.name
 	    });
@@ -5655,85 +5655,85 @@ var app = (function () {
 	    var props = options.props || {};
 
 	    if (
-	    /*submenu*/
-	    ctx[0] === undefined && !("submenu" in props)) {
-	      console.warn("<Subsubmenu> was created without expected prop 'submenu'");
+	    /*menu*/
+	    ctx[0] === undefined && !("menu" in props)) {
+	      console.warn("<Menu> was created without expected prop 'menu'");
 	    }
 
 	    return _this5;
 	  }
 
-	  _createClass(Subsubmenu, [{
-	    key: "submenu",
+	  _createClass(Menu, [{
+	    key: "menu",
 	    get: function get() {
-	      throw new Error("<Subsubmenu>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	      throw new Error("<Menu>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	    },
 	    set: function set(value) {
-	      throw new Error("<Subsubmenu>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	      throw new Error("<Menu>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	    }
 	  }]);
 
-	  return Subsubmenu;
+	  return Menu;
 	}(SvelteComponentDev);
 
 	function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 	function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-	var file$5 = "src/components/Header/SubMenu.svelte";
+	var file$5 = "src/components/Header/Dropdown.svelte";
 
 	function get_each_context$1(ctx, list, i) {
 	  var child_ctx = ctx.slice();
 	  child_ctx[1] = list[i];
 	  return child_ctx;
-	} // (58:8) {#each menu.menu as submenu}
+	} // (58:8) {#each dropdown.items as menu}
 
 
 	function create_each_block$1(ctx) {
-	  var subsubmenu;
+	  var menu;
 	  var current;
-	  subsubmenu = new Subsubmenu({
+	  menu = new Menu({
 	    props: {
-	      submenu:
-	      /*submenu*/
+	      menu:
+	      /*menu*/
 	      ctx[1]
 	    },
 	    $$inline: true
 	  });
 	  var block = {
 	    c: function create() {
-	      create_component(subsubmenu.$$.fragment);
+	      create_component(menu.$$.fragment);
 	    },
 	    m: function mount(target, anchor) {
-	      mount_component(subsubmenu, target, anchor);
+	      mount_component(menu, target, anchor);
 	      current = true;
 	    },
 	    p: function update(ctx, dirty) {
-	      var subsubmenu_changes = {};
+	      var menu_changes = {};
 	      if (dirty &
+	      /*dropdown*/
+	      1) menu_changes.menu =
 	      /*menu*/
-	      1) subsubmenu_changes.submenu =
-	      /*submenu*/
 	      ctx[1];
-	      subsubmenu.$set(subsubmenu_changes);
+	      menu.$set(menu_changes);
 	    },
 	    i: function intro(local) {
 	      if (current) return;
-	      transition_in(subsubmenu.$$.fragment, local);
+	      transition_in(menu.$$.fragment, local);
 	      current = true;
 	    },
 	    o: function outro(local) {
-	      transition_out(subsubmenu.$$.fragment, local);
+	      transition_out(menu.$$.fragment, local);
 	      current = false;
 	    },
 	    d: function destroy(detaching) {
-	      destroy_component(subsubmenu, detaching);
+	      destroy_component(menu, detaching);
 	    }
 	  };
 	  dispatch_dev("SvelteRegisterBlock", {
 	    block: block,
 	    id: create_each_block$1.name,
 	    type: "each",
-	    source: "(58:8) {#each menu.menu as submenu}",
+	    source: "(58:8) {#each dropdown.items as menu}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -5746,7 +5746,7 @@ var app = (function () {
 	  var button;
 	  var span0;
 	  var t0_value =
-	  /*menu*/
+	  /*dropdown*/
 	  ctx[0].name + "";
 	  var t0;
 	  var t1;
@@ -5759,8 +5759,8 @@ var app = (function () {
 	    $$inline: true
 	  });
 	  var each_value =
-	  /*menu*/
-	  ctx[0].menu;
+	  /*dropdown*/
+	  ctx[0].items;
 	  validate_each_argument(each_value);
 	  var each_blocks = [];
 
@@ -5797,14 +5797,14 @@ var app = (function () {
 	      }
 
 	      attr_dev(span0, "class", "flex-1 pr-1 font-semibold");
-	      add_location(span0, file$5, 52, 8, 1173);
-	      add_location(span1, file$5, 53, 8, 1240);
+	      add_location(span0, file$5, 52, 8, 1165);
+	      add_location(span1, file$5, 53, 8, 1236);
 	      attr_dev(button, "class", "flex items-center px-3 py-1 text-black border rounded-sm outline-none focus:outline-none min-w-32 svelte-1faaxik");
-	      add_location(button, file$5, 50, 4, 1042);
+	      add_location(button, file$5, 50, 4, 1034);
 	      attr_dev(ul, "class", "absolute transition duration-150 ease-in-out origin-top transform scale-0 bg-white border rounded-sm group-hover:scale-100 min-w-32 svelte-1faaxik");
-	      add_location(ul, file$5, 55, 4, 1281);
+	      add_location(ul, file$5, 55, 4, 1277);
 	      attr_dev(div, "class", "inline-block m-2 group svelte-1faaxik");
-	      add_location(div, file$5, 49, 0, 1001);
+	      add_location(div, file$5, 49, 0, 993);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5831,17 +5831,17 @@ var app = (function () {
 	          dirty = _ref2[0];
 
 	      if ((!current || dirty &
-	      /*menu*/
+	      /*dropdown*/
 	      1) && t0_value !== (t0_value =
-	      /*menu*/
+	      /*dropdown*/
 	      ctx[0].name + "")) set_data_dev(t0, t0_value);
 
 	      if (dirty &
-	      /*menu*/
+	      /*dropdown*/
 	      1) {
 	        each_value =
-	        /*menu*/
-	        ctx[0].menu;
+	        /*dropdown*/
+	        ctx[0].items;
 	        validate_each_argument(each_value);
 
 	        var _i3;
@@ -5915,61 +5915,61 @@ var app = (function () {
 	  var _$$props$$$slots = $$props.$$slots,
 	      slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
 	      $$scope = $$props.$$scope;
-	  validate_slots("SubMenu", slots, []);
-	  var menu = $$props.menu;
-	  var writable_props = ["menu"];
+	  validate_slots("Dropdown", slots, []);
+	  var dropdown = $$props.dropdown;
+	  var writable_props = ["dropdown"];
 	  Object.keys($$props).forEach(function (key) {
 	    _newArrowCheck(this, _this3);
 
-	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<SubMenu> was created with unknown prop '".concat(key, "'"));
+	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Dropdown> was created with unknown prop '".concat(key, "'"));
 	  }.bind(this));
 
 	  $$self.$$set = function ($$props) {
 	    _newArrowCheck(this, _this3);
 
-	    if ("menu" in $$props) $$invalidate(0, menu = $$props.menu);
+	    if ("dropdown" in $$props) $$invalidate(0, dropdown = $$props.dropdown);
 	  }.bind(this);
 
 	  $$self.$capture_state = function () {
 	    _newArrowCheck(this, _this3);
 
 	    return {
-	      SubsubMenu: Subsubmenu,
+	      Menu: Menu,
 	      Arrow: Arrow,
-	      menu: menu
+	      dropdown: dropdown
 	    };
 	  }.bind(this);
 
 	  $$self.$inject_state = function ($$props) {
 	    _newArrowCheck(this, _this3);
 
-	    if ("menu" in $$props) $$invalidate(0, menu = $$props.menu);
+	    if ("dropdown" in $$props) $$invalidate(0, dropdown = $$props.dropdown);
 	  }.bind(this);
 
 	  if ($$props && "$$inject" in $$props) {
 	    $$self.$inject_state($$props.$$inject);
 	  }
 
-	  return [menu];
+	  return [dropdown];
 	}
 
-	var SubMenu = /*#__PURE__*/function (_SvelteComponentDev) {
-	  _inherits(SubMenu, _SvelteComponentDev);
+	var Dropdown = /*#__PURE__*/function (_SvelteComponentDev) {
+	  _inherits(Dropdown, _SvelteComponentDev);
 
-	  var _super = _createSuper$6(SubMenu);
+	  var _super = _createSuper$6(Dropdown);
 
-	  function SubMenu(options) {
+	  function Dropdown(options) {
 	    var _this4;
 
-	    _classCallCheck(this, SubMenu);
+	    _classCallCheck(this, Dropdown);
 
 	    _this4 = _super.call(this, options);
 	    init(_assertThisInitialized(_this4), options, instance$5, create_fragment$5, safe_not_equal, {
-	      menu: 0
+	      dropdown: 0
 	    });
 	    dispatch_dev("SvelteRegisterComponent", {
 	      component: _assertThisInitialized(_this4),
-	      tagName: "SubMenu",
+	      tagName: "Dropdown",
 	      options: options,
 	      id: create_fragment$5.name
 	    });
@@ -5977,25 +5977,25 @@ var app = (function () {
 	    var props = options.props || {};
 
 	    if (
-	    /*menu*/
-	    ctx[0] === undefined && !("menu" in props)) {
-	      console.warn("<SubMenu> was created without expected prop 'menu'");
+	    /*dropdown*/
+	    ctx[0] === undefined && !("dropdown" in props)) {
+	      console.warn("<Dropdown> was created without expected prop 'dropdown'");
 	    }
 
 	    return _this4;
 	  }
 
-	  _createClass(SubMenu, [{
-	    key: "menu",
+	  _createClass(Dropdown, [{
+	    key: "dropdown",
 	    get: function get() {
-	      throw new Error("<SubMenu>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	      throw new Error("<Dropdown>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	    },
 	    set: function set(value) {
-	      throw new Error("<SubMenu>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+	      throw new Error("<Dropdown>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
 	    }
 	  }]);
 
-	  return SubMenu;
+	  return Dropdown;
 	}(SvelteComponentDev);
 
 	function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
@@ -6004,49 +6004,49 @@ var app = (function () {
 
 	function get_each_context$2(ctx, list, i) {
 	  var child_ctx = ctx.slice();
-	  child_ctx[2] = list[i];
+	  child_ctx[1] = list[i];
 	  return child_ctx;
-	} // (37:0) {#each items as menu}
+	} // (36:0) {#each items as dropdown}
 
 
 	function create_each_block$2(ctx) {
-	  var submenu;
+	  var dropdown;
 	  var current;
-	  submenu = new SubMenu({
+	  dropdown = new Dropdown({
 	    props: {
-	      menu:
-	      /*menu*/
-	      ctx[2]
+	      dropdown:
+	      /*dropdown*/
+	      ctx[1]
 	    },
 	    $$inline: true
 	  });
 	  var block = {
 	    c: function create() {
-	      create_component(submenu.$$.fragment);
+	      create_component(dropdown.$$.fragment);
 	    },
 	    m: function mount(target, anchor) {
-	      mount_component(submenu, target, anchor);
+	      mount_component(dropdown, target, anchor);
 	      current = true;
 	    },
 	    p: noop,
 	    i: function intro(local) {
 	      if (current) return;
-	      transition_in(submenu.$$.fragment, local);
+	      transition_in(dropdown.$$.fragment, local);
 	      current = true;
 	    },
 	    o: function outro(local) {
-	      transition_out(submenu.$$.fragment, local);
+	      transition_out(dropdown.$$.fragment, local);
 	      current = false;
 	    },
 	    d: function destroy(detaching) {
-	      destroy_component(submenu, detaching);
+	      destroy_component(dropdown, detaching);
 	    }
 	  };
 	  dispatch_dev("SvelteRegisterBlock", {
 	    block: block,
 	    id: create_each_block$2.name,
 	    type: "each",
-	    source: "(37:0) {#each items as menu}",
+	    source: "(36:0) {#each items as dropdown}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -6178,14 +6178,14 @@ var app = (function () {
 	  var _$$props$$$slots = $$props.$$slots,
 	      slots = _$$props$$$slots === void 0 ? {} : _$$props$$$slots,
 	      $$scope = $$props.$$scope;
-	  validate_slots("Menu", slots, []);
+	  validate_slots("Navbar", slots, []);
 	  var items = [{
 	    name: "File",
-	    menu: [{
+	    items: [{
 	      name: "Languages",
-	      menu: [{
+	      items: [{
 	        name: "Python",
-	        menu: [{
+	        items: [{
 	          name: "2.7"
 	        }, {
 	          name: "3+"
@@ -6198,30 +6198,29 @@ var app = (function () {
 	    }]
 	  }, {
 	    name: "Edit",
-	    menu: [{
+	    items: [{
 	      name: "Find",
-	      menu: [{
+	      icon: "loop",
+	      items: [{
 	        name: "Python"
 	      }, {
 	        name: "Go"
 	      }]
 	    }]
 	  }];
-	  var menus = {};
 	  var writable_props = [];
 	  Object.keys($$props).forEach(function (key) {
 	    _newArrowCheck(this, _this3);
 
-	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Menu> was created with unknown prop '".concat(key, "'"));
+	    if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn("<Navbar> was created with unknown prop '".concat(key, "'"));
 	  }.bind(this));
 
 	  $$self.$capture_state = function () {
 	    _newArrowCheck(this, _this3);
 
 	    return {
-	      SubMenu: SubMenu,
-	      items: items,
-	      menus: menus
+	      Dropdown: Dropdown,
+	      items: items
 	    };
 	  }.bind(this);
 
@@ -6229,7 +6228,6 @@ var app = (function () {
 	    _newArrowCheck(this, _this3);
 
 	    if ("items" in $$props) $$invalidate(0, items = $$props.items);
-	    if ("menus" in $$props) menus = $$props.menus;
 	  }.bind(this);
 
 	  if ($$props && "$$inject" in $$props) {
@@ -6239,28 +6237,28 @@ var app = (function () {
 	  return [items];
 	}
 
-	var Menu = /*#__PURE__*/function (_SvelteComponentDev) {
-	  _inherits(Menu, _SvelteComponentDev);
+	var Navbar = /*#__PURE__*/function (_SvelteComponentDev) {
+	  _inherits(Navbar, _SvelteComponentDev);
 
-	  var _super = _createSuper$7(Menu);
+	  var _super = _createSuper$7(Navbar);
 
-	  function Menu(options) {
+	  function Navbar(options) {
 	    var _this4;
 
-	    _classCallCheck(this, Menu);
+	    _classCallCheck(this, Navbar);
 
 	    _this4 = _super.call(this, options);
 	    init(_assertThisInitialized(_this4), options, instance$6, create_fragment$6, safe_not_equal, {});
 	    dispatch_dev("SvelteRegisterComponent", {
 	      component: _assertThisInitialized(_this4),
-	      tagName: "Menu",
+	      tagName: "Navbar",
 	      options: options,
 	      id: create_fragment$6.name
 	    });
 	    return _this4;
 	  }
 
-	  return Menu;
+	  return Navbar;
 	}(SvelteComponentDev);
 
 	function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
@@ -6287,7 +6285,7 @@ var app = (function () {
 	  hamburger = new Hamburger({
 	    $$inline: true
 	  });
-	  menu = new Menu({
+	  menu = new Navbar({
 	    $$inline: true
 	  });
 	  ticog = new TiCog({
@@ -6310,21 +6308,21 @@ var app = (function () {
 	      button = element("button");
 	      create_component(ticog.$$.fragment);
 	      attr_dev(div0, "class", "block m-2 sm:hidden");
-	      add_location(div0, file$6, 15, 12, 317);
+	      add_location(div0, file$6, 15, 12, 319);
 	      attr_dev(ul, "class", "hidden sm:flex sm:flex-row");
 	      attr_dev(ul, "id", "mobileMenu");
-	      add_location(ul, file$6, 18, 12, 412);
+	      add_location(ul, file$6, 18, 12, 414);
 	      attr_dev(div1, "class", "flex-grow");
-	      add_location(div1, file$6, 21, 12, 523);
+	      add_location(div1, file$6, 21, 12, 525);
 	      attr_dev(button, "class", "flex-grow-0 m-2 icon svelte-lr5szm");
-	      add_location(button, file$6, 23, 16, 617);
+	      add_location(button, file$6, 23, 16, 619);
 	      attr_dev(div2, "class", "flex flex-row flex-grow-0");
-	      add_location(div2, file$6, 22, 12, 561);
+	      add_location(div2, file$6, 22, 12, 563);
 	      attr_dev(div3, "class", "flex flex-row");
-	      add_location(div3, file$6, 14, 8, 277);
-	      add_location(nav, file$6, 13, 4, 263);
+	      add_location(div3, file$6, 14, 8, 279);
+	      add_location(nav, file$6, 13, 4, 265);
 	      attr_dev(div4, "class", "bg-header-700");
-	      add_location(div4, file$6, 12, 0, 231);
+	      add_location(div4, file$6, 12, 0, 233);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6397,7 +6395,7 @@ var app = (function () {
 	    return {
 	      Hamburger: Hamburger,
 	      TiCog: TiCog,
-	      Menu: Menu
+	      Menu: Navbar
 	    };
 	  }.bind(this);
 

@@ -1,7 +1,7 @@
 <script>
     import Hamburger from "./Hamburger.svelte";
     import TiCog from "svelte-icons/ti/TiCog.svelte";
-    import Menu from "./Menu.svelte";
+    import Menu from "./Navbar.svelte";
 </script>
 
 <style>
