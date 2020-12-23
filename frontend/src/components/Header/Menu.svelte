@@ -3,6 +3,10 @@
 </script>
 
 <style>
+    .icon {
+        width: 1rem;
+        height: 1rem;
+    }
     /* since nested groupes are not supported we have to use 
        regular css for the nested dropdowns 
     */
@@ -36,7 +40,11 @@
     <li class="relative px-3 py-1 rounded-sm">
         <button
             class="flex items-center w-full text-left outline-none focus:outline-none">
-            <span class="flex-1 pr-1">{menu.name}</span>
+            {#if menu.icon}
+                <span class="m-1 icon">
+                    <svelte:component this={menu.icon} /></span>
+            {/if}
+            <span class="flex-1 pr-1"> {menu.name} </span>
             <span class="mr-auto">
                 <svg
                     class="w-4 h-4 transition duration-150 ease-in-out fill-current"

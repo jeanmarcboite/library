@@ -1,5 +1,7 @@
 <script>
     import Dropdown from "./Dropdown.svelte";
+    import FaSearch from "svelte-icons/fa/FaSearch.svelte";
+    import FaDatabase from "svelte-icons/fa/FaDatabase.svelte";
 
     let items = [
         {
@@ -16,7 +18,8 @@
                     ],
                 },
                 {
-                    name: "Load ...",
+                    name: "Load database...",
+                    icon: FaDatabase,
                 },
             ],
         },
@@ -25,7 +28,7 @@
             items: [
                 {
                     name: "Find",
-                    icon: "loop",
+                    icon: FaSearch,
                     items: [{ name: "Python" }, { name: "Go" }],
                 },
             ],
