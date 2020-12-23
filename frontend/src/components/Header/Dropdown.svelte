@@ -20,16 +20,20 @@
     .min-w-32 {
         min-width: 8rem;
     }
+    div,
+    ul {
+        background-color: #376e6f;
+    }
 </style>
 
 <div class="inline-block m-2 group">
     <button
-        class="flex items-center px-3 py-1 text-black border rounded-sm outline-none focus:outline-none min-w-32">
-        <span class="flex-1 pr-1 font-semibold">{dropdown.name}</span>
+        class="flex items-center px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">
+        <span class="flex-1 pr-1 font-semibold button">{dropdown.name}</span>
         <span><Arrow /></span>
     </button>
     <ul
-        class="absolute transition duration-150 ease-in-out origin-top transform scale-0 bg-white border rounded-sm group-hover:scale-100 min-w-32">
+        class="absolute transition duration-150 ease-in-out origin-top transform scale-0 border rounded-sm group-hover:scale-100 min-w-32">
         {#each dropdown.items as menu}
             <Menu {menu} />
         {/each}

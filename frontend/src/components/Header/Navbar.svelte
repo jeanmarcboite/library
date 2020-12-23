@@ -33,6 +33,8 @@
     ];
 </script>
 
-{#each items as dropdown}
-    <Dropdown {dropdown} />
-{/each}
+<div>
+    {#each items as dropdown}
+        <Dropdown {dropdown} />
+    {/each}
+</div>

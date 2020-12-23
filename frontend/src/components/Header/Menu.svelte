@@ -16,12 +16,19 @@
     .min-w-32 {
         min-width: 8rem;
     }
+    li {
+        background-color: #376e6f;
+        color: floralwhite;
+    }
+    li:hover {
+        background-color: #2f4454;
+    }
 </style>
 
 {#if !menu.items}
-    <li class="px-3 py-1 rounded-sm hover:bg-blue-200">{menu.name}</li>
+    <li class="px-3 py-1 rounded-sm">{menu.name}</li>
 {:else}
-    <li class="relative px-3 py-1 rounded-sm hover:bg-blue-200">
+    <li class="relative px-3 py-1 rounded-sm">
         <button
             class="flex items-center w-full text-left outline-none focus:outline-none">
             <span class="flex-1 pr-1">{menu.name}</span>
@@ -30,7 +37,7 @@
             </span>
         </button>
         <ul
-            class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left bg-white border rounded-sm min-w-32 ">
+            class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm min-w-32 ">
             {#each menu.items as submenu}
                 <svelte:self menu={submenu} />
             {/each}

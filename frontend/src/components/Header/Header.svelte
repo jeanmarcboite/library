@@ -1,7 +1,7 @@
 <script>
     import Hamburger from "./Hamburger.svelte";
     import TiCog from "svelte-icons/ti/TiCog.svelte";
-    import Menu from "./Navbar.svelte";
+    import Navbar from "./Navbar.svelte";
 </script>
 
 <style>
@@ -10,23 +10,25 @@
         width: 32px;
         height: 32px;
     }
+    .menu {
+        background-color: #376e6f;
+        color: floralwhite;
+    }
 </style>
 
-<div class="bg-header-700">
-    <nav>
-        <div class="flex flex-row">
-            <div class="block m-2 sm:hidden">
-                <Hamburger />
-            </div>
-            <ul class="hidden sm:flex sm:flex-row" id="mobileMenu">
-                <Menu />
-            </ul>
-            <div class="flex-grow" />
-            <div class="flex flex-row flex-grow-0">
-                <button class="flex-grow-0 m-2 icon">
-                    <TiCog />
-                </button>
-            </div>
+<nav class="menu">
+    <div class="flex flex-row">
+        <div class="block m-2 sm:hidden">
+            <Hamburger />
         </div>
-    </nav>
-</div>
+        <ul class="hidden sm:flex sm:flex-row" id="mobileMenu">
+            <Navbar />
+        </ul>
+        <div class="flex-grow" />
+        <div class="flex flex-row flex-grow-0">
+            <button class="flex-grow-0 m-2 icon">
+                <TiCog />
+            </button>
+        </div>
+    </div>
+</nav>

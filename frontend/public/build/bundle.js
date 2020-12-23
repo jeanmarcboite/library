@@ -5241,7 +5241,7 @@ var app = (function () {
 	  var child_ctx = ctx.slice();
 	  child_ctx[1] = list[i];
 	  return child_ctx;
-	} // (24:0) {:else}
+	} // (33:0) {:else}
 
 
 	function create_else_block$1(ctx) {
@@ -5302,15 +5302,15 @@ var app = (function () {
 	      }
 
 	      attr_dev(span0, "class", "flex-1 pr-1");
-	      add_location(span0, file$4, 27, 12, 632);
+	      add_location(span0, file$4, 36, 12, 698);
 	      attr_dev(span1, "class", "mr-auto");
-	      add_location(span1, file$4, 28, 12, 689);
+	      add_location(span1, file$4, 37, 12, 755);
 	      attr_dev(button, "class", "flex items-center w-full text-left outline-none focus:outline-none");
-	      add_location(button, file$4, 25, 8, 524);
-	      attr_dev(ul, "class", "absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left bg-white border rounded-sm min-w-32  svelte-ta7nvw");
-	      add_location(ul, file$4, 32, 8, 784);
-	      attr_dev(li, "class", "relative px-3 py-1 rounded-sm hover:bg-blue-200 svelte-ta7nvw");
-	      add_location(li, file$4, 24, 4, 455);
+	      add_location(button, file$4, 34, 8, 590);
+	      attr_dev(ul, "class", "absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm min-w-32  svelte-47ocgh");
+	      add_location(ul, file$4, 41, 8, 850);
+	      attr_dev(li, "class", "relative px-3 py-1 rounded-sm svelte-47ocgh");
+	      add_location(li, file$4, 33, 4, 539);
 	    },
 	    m: function mount(target, anchor) {
 	      insert_dev(target, li, anchor);
@@ -5403,11 +5403,11 @@ var app = (function () {
 	    block: block,
 	    id: create_else_block$1.name,
 	    type: "else",
-	    source: "(24:0) {:else}",
+	    source: "(33:0) {:else}",
 	    ctx: ctx
 	  });
 	  return block;
-	} // (22:0) {#if !menu.items}
+	} // (31:0) {#if !menu.items}
 
 
 	function create_if_block$2(ctx) {
@@ -5420,8 +5420,8 @@ var app = (function () {
 	    c: function create() {
 	      li = element("li");
 	      t = text(t_value);
-	      attr_dev(li, "class", "px-3 py-1 rounded-sm hover:bg-blue-200");
-	      add_location(li, file$4, 22, 4, 375);
+	      attr_dev(li, "class", "px-3 py-1 rounded-sm svelte-47ocgh");
+	      add_location(li, file$4, 31, 4, 477);
 	    },
 	    m: function mount(target, anchor) {
 	      insert_dev(target, li, anchor);
@@ -5444,11 +5444,11 @@ var app = (function () {
 	    block: block,
 	    id: create_if_block$2.name,
 	    type: "if",
-	    source: "(22:0) {#if !menu.items}",
+	    source: "(31:0) {#if !menu.items}",
 	    ctx: ctx
 	  });
 	  return block;
-	} // (35:12) {#each menu.items as submenu}
+	} // (44:12) {#each menu.items as submenu}
 
 
 	function create_each_block(ctx) {
@@ -5496,7 +5496,7 @@ var app = (function () {
 	    block: block,
 	    id: create_each_block.name,
 	    type: "each",
-	    source: "(35:12) {#each menu.items as submenu}",
+	    source: "(44:12) {#each menu.items as submenu}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -5685,7 +5685,7 @@ var app = (function () {
 	  var child_ctx = ctx.slice();
 	  child_ctx[1] = list[i];
 	  return child_ctx;
-	} // (58:8) {#each dropdown.items as menu}
+	} // (39:8) {#each dropdown.items as menu}
 
 
 	function create_each_block$1(ctx) {
@@ -5733,7 +5733,7 @@ var app = (function () {
 	    block: block,
 	    id: create_each_block$1.name,
 	    type: "each",
-	    source: "(58:8) {#each dropdown.items as menu}",
+	    source: "(39:8) {#each dropdown.items as menu}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -5796,15 +5796,15 @@ var app = (function () {
 	        each_blocks[_i].c();
 	      }
 
-	      attr_dev(span0, "class", "flex-1 pr-1 font-semibold");
-	      add_location(span0, file$5, 52, 8, 1165);
-	      add_location(span1, file$5, 53, 8, 1236);
-	      attr_dev(button, "class", "flex items-center px-3 py-1 text-black border rounded-sm outline-none focus:outline-none min-w-32 svelte-1faaxik");
-	      add_location(button, file$5, 50, 4, 1034);
-	      attr_dev(ul, "class", "absolute transition duration-150 ease-in-out origin-top transform scale-0 bg-white border rounded-sm group-hover:scale-100 min-w-32 svelte-1faaxik");
-	      add_location(ul, file$5, 55, 4, 1277);
-	      attr_dev(div, "class", "inline-block m-2 group svelte-1faaxik");
-	      add_location(div, file$5, 49, 0, 993);
+	      attr_dev(span0, "class", "flex-1 pr-1 font-semibold button");
+	      add_location(span0, file$5, 33, 8, 797);
+	      add_location(span1, file$5, 34, 8, 875);
+	      attr_dev(button, "class", "flex items-center px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32 svelte-etbup7");
+	      add_location(button, file$5, 31, 4, 677);
+	      attr_dev(ul, "class", "absolute transition duration-150 ease-in-out origin-top transform scale-0 border rounded-sm group-hover:scale-100 min-w-32 svelte-etbup7");
+	      add_location(ul, file$5, 36, 4, 916);
+	      attr_dev(div, "class", "inline-block m-2 group svelte-etbup7");
+	      add_location(div, file$5, 30, 0, 636);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6001,12 +6001,13 @@ var app = (function () {
 	function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 	function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+	var file$6 = "src/components/Header/Navbar.svelte";
 
 	function get_each_context$2(ctx, list, i) {
 	  var child_ctx = ctx.slice();
 	  child_ctx[1] = list[i];
 	  return child_ctx;
-	} // (36:0) {#each items as dropdown}
+	} // (37:4) {#each items as dropdown}
 
 
 	function create_each_block$2(ctx) {
@@ -6046,7 +6047,7 @@ var app = (function () {
 	    block: block,
 	    id: create_each_block$2.name,
 	    type: "each",
-	    source: "(36:0) {#each items as dropdown}",
+	    source: "(37:4) {#each items as dropdown}",
 	    ctx: ctx
 	  });
 	  return block;
@@ -6055,7 +6056,7 @@ var app = (function () {
 	function create_fragment$6(ctx) {
 	  var _this = this;
 
-	  var each_1_anchor;
+	  var div;
 	  var current;
 	  var each_value =
 	  /*items*/
@@ -6081,21 +6082,24 @@ var app = (function () {
 
 	  var block = {
 	    c: function create() {
+	      div = element("div");
+
 	      for (var _i = 0; _i < each_blocks.length; _i += 1) {
 	        each_blocks[_i].c();
 	      }
 
-	      each_1_anchor = empty();
+	      add_location(div, file$6, 35, 0, 838);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 	    },
 	    m: function mount(target, anchor) {
+	      insert_dev(target, div, anchor);
+
 	      for (var _i2 = 0; _i2 < each_blocks.length; _i2 += 1) {
-	        each_blocks[_i2].m(target, anchor);
+	        each_blocks[_i2].m(div, null);
 	      }
 
-	      insert_dev(target, each_1_anchor, anchor);
 	      current = true;
 	    },
 	    p: function update(ctx, _ref) {
@@ -6126,7 +6130,7 @@ var app = (function () {
 
 	            transition_in(each_blocks[_i3], 1);
 
-	            each_blocks[_i3].m(each_1_anchor.parentNode, each_1_anchor);
+	            each_blocks[_i3].m(div, null);
 	          }
 	        }
 
@@ -6158,8 +6162,8 @@ var app = (function () {
 	      current = false;
 	    },
 	    d: function destroy(detaching) {
+	      if (detaching) detach_dev(div);
 	      destroy_each(each_blocks, detaching);
-	      if (detaching) detach_dev(each_1_anchor);
 	    }
 	  };
 	  dispatch_dev("SvelteRegisterBlock", {
@@ -6264,17 +6268,16 @@ var app = (function () {
 	function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 	function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-	var file$6 = "src/components/Header/Header.svelte";
+	var file$7 = "src/components/Header/Header.svelte";
 
 	function create_fragment$7(ctx) {
-	  var div4;
 	  var nav;
 	  var div3;
 	  var div0;
 	  var hamburger;
 	  var t0;
 	  var ul;
-	  var menu;
+	  var navbar;
 	  var t1;
 	  var div1;
 	  var t2;
@@ -6285,7 +6288,7 @@ var app = (function () {
 	  hamburger = new Hamburger({
 	    $$inline: true
 	  });
-	  menu = new Navbar({
+	  navbar = new Navbar({
 	    $$inline: true
 	  });
 	  ticog = new TiCog({
@@ -6293,14 +6296,13 @@ var app = (function () {
 	  });
 	  var block = {
 	    c: function create() {
-	      div4 = element("div");
 	      nav = element("nav");
 	      div3 = element("div");
 	      div0 = element("div");
 	      create_component(hamburger.$$.fragment);
 	      t0 = space();
 	      ul = element("ul");
-	      create_component(menu.$$.fragment);
+	      create_component(navbar.$$.fragment);
 	      t1 = space();
 	      div1 = element("div");
 	      t2 = space();
@@ -6308,34 +6310,32 @@ var app = (function () {
 	      button = element("button");
 	      create_component(ticog.$$.fragment);
 	      attr_dev(div0, "class", "block m-2 sm:hidden");
-	      add_location(div0, file$6, 15, 12, 319);
+	      add_location(div0, file$7, 19, 8, 356);
 	      attr_dev(ul, "class", "hidden sm:flex sm:flex-row");
 	      attr_dev(ul, "id", "mobileMenu");
-	      add_location(ul, file$6, 18, 12, 414);
+	      add_location(ul, file$7, 22, 8, 439);
 	      attr_dev(div1, "class", "flex-grow");
-	      add_location(div1, file$6, 21, 12, 525);
-	      attr_dev(button, "class", "flex-grow-0 m-2 icon svelte-lr5szm");
-	      add_location(button, file$6, 23, 16, 619);
+	      add_location(div1, file$7, 25, 8, 540);
+	      attr_dev(button, "class", "flex-grow-0 m-2 icon svelte-1gekird");
+	      add_location(button, file$7, 27, 12, 626);
 	      attr_dev(div2, "class", "flex flex-row flex-grow-0");
-	      add_location(div2, file$6, 22, 12, 563);
+	      add_location(div2, file$7, 26, 8, 574);
 	      attr_dev(div3, "class", "flex flex-row");
-	      add_location(div3, file$6, 14, 8, 279);
-	      add_location(nav, file$6, 13, 4, 265);
-	      attr_dev(div4, "class", "bg-header-700");
-	      add_location(div4, file$6, 12, 0, 233);
+	      add_location(div3, file$7, 18, 4, 320);
+	      attr_dev(nav, "class", "menu svelte-1gekird");
+	      add_location(nav, file$7, 17, 0, 297);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
 	    },
 	    m: function mount(target, anchor) {
-	      insert_dev(target, div4, anchor);
-	      append_dev(div4, nav);
+	      insert_dev(target, nav, anchor);
 	      append_dev(nav, div3);
 	      append_dev(div3, div0);
 	      mount_component(hamburger, div0, null);
 	      append_dev(div3, t0);
 	      append_dev(div3, ul);
-	      mount_component(menu, ul, null);
+	      mount_component(navbar, ul, null);
 	      append_dev(div3, t1);
 	      append_dev(div3, div1);
 	      append_dev(div3, t2);
@@ -6348,20 +6348,20 @@ var app = (function () {
 	    i: function intro(local) {
 	      if (current) return;
 	      transition_in(hamburger.$$.fragment, local);
-	      transition_in(menu.$$.fragment, local);
+	      transition_in(navbar.$$.fragment, local);
 	      transition_in(ticog.$$.fragment, local);
 	      current = true;
 	    },
 	    o: function outro(local) {
 	      transition_out(hamburger.$$.fragment, local);
-	      transition_out(menu.$$.fragment, local);
+	      transition_out(navbar.$$.fragment, local);
 	      transition_out(ticog.$$.fragment, local);
 	      current = false;
 	    },
 	    d: function destroy(detaching) {
-	      if (detaching) detach_dev(div4);
+	      if (detaching) detach_dev(nav);
 	      destroy_component(hamburger);
-	      destroy_component(menu);
+	      destroy_component(navbar);
 	      destroy_component(ticog);
 	    }
 	  };
@@ -6395,7 +6395,7 @@ var app = (function () {
 	    return {
 	      Hamburger: Hamburger,
 	      TiCog: TiCog,
-	      Menu: Navbar
+	      Navbar: Navbar
 	    };
 	  }.bind(this);
 
@@ -6495,7 +6495,7 @@ var app = (function () {
 	function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 	function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-	var file$7 = "src/App.svelte";
+	var file$8 = "src/App.svelte";
 
 	function create_fragment$9(ctx) {
 	  var tailwind;
@@ -6527,14 +6527,14 @@ var app = (function () {
 	      footer = element("footer");
 	      footer.textContent = "Footer";
 	      attr_dev(header1, "class", "svelte-1pgasei");
-	      add_location(header1, file$7, 26, 4, 394);
+	      add_location(header1, file$8, 26, 4, 394);
 	      attr_dev(main, "class", "flex-grow overflow-y svelte-1pgasei");
-	      add_location(main, file$7, 30, 4, 441);
+	      add_location(main, file$8, 30, 4, 441);
 	      attr_dev(footer, "class", "svelte-1pgasei");
-	      add_location(footer, file$7, 31, 4, 483);
+	      add_location(footer, file$8, 31, 4, 483);
 	      attr_dev(div, "id", "app");
 	      attr_dev(div, "class", "flex flex-col w-screen svelte-1pgasei");
-	      add_location(div, file$7, 25, 0, 344);
+	      add_location(div, file$8, 25, 0, 344);
 	    },
 	    l: function claim(nodes) {
 	      throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
