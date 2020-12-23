@@ -1,6 +1,5 @@
 <script>
     import Menu from "./Menu.svelte";
-    import Arrow from "./Arrow.svelte";
     export let dropdown;
 </script>
 
@@ -13,6 +12,9 @@
     */
     .group:hover .group-hover\:scale-100 {
         transform: scale(1);
+    }
+    div:hover svg {
+        transform: rotate(-180deg);
     }
     .scale-0 {
         transform: scale(0);
@@ -30,7 +32,15 @@
     <button
         class="flex items-center px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">
         <span class="flex-1 pr-1 font-semibold button">{dropdown.name}</span>
-        <span><Arrow /></span>
+        <span>
+            <svg
+                class="w-4 h-4 transition duration-150 ease-in-out fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20">
+                <path
+                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
+        </span>
     </button>
     <ul
         class="absolute transition duration-150 ease-in-out origin-top transform scale-0 border rounded-sm group-hover:scale-100 min-w-32">
