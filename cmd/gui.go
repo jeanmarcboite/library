@@ -32,7 +32,7 @@ type AppInfo struct {
 }
 
 func appInfo() AppInfo {
-	return AppInfo{Name: "BookinS", Version: "0.1.0"}
+	return AppInfo{Name: Koanf.String("app.name"), Version: Koanf.String("app.version")}
 }
 
 // gui webview

@@ -1,5 +1,6 @@
 <script>
     import Header from "./components/Header";
+    import Footer from "./components/Footer";
     import Tailwind from "./Tailwind.svelte";
 </script>
 
@@ -18,7 +19,7 @@
 
     footer {
         width: 100%;
-        background-color: blue;
+        background-color: black;
     }
 </style>
 
@@ -29,5 +30,7 @@
     </header>
 
     <main class="flex-grow overflow-y" />
-    <footer>Footer</footer>
+    <footer>
+        <Footer />
+    </footer>
 </div>
