@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"os"
+	"path/filepath"
 
 	"net/http"
 
@@ -50,13 +51,13 @@ func SelectEpub() string {
 
 func LoadCalibreDB() (calibre.CalibreDB, error) {
 	db := calibre.CalibreDB{}
-	filename, err := dialog.Directory().Title("Load images").Browse()
+	dirname, err := dialog.Directory().Title("Load Calibre database").Browse()
 	//filename, err := dialog.File().Filter("Calibre DB", "db").Load()
 	if err != nil {
 		return db, err
 	}
 
-	return calibre.ReadDB(filename, debug)
+	return calibre.ReadDB(filepath.Join(dirname, "metadata.db"), debug)
 }
 
 // gui webview
