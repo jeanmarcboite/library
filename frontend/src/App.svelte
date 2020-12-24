@@ -2,6 +2,7 @@
     import Header from "./components/Header";
     import Footer from "./components/Footer";
     import Tailwind from "./Tailwind.svelte";
+    import Notifications from "svelte-notifications";
 </script>
 
 <style>
@@ -24,13 +25,16 @@
 </style>
 
 <Tailwind />
-<div id="app" class="flex flex-col w-screen">
-    <header>
-        <Header />
-    </header>
 
-    <main class="flex-grow overflow-y" />
-    <footer>
-        <Footer />
-    </footer>
-</div>
+<Notifications>
+    <div id="app" class="flex flex-col w-screen">
+        <header>
+            <Header />
+        </header>
+
+        <main class="flex-grow overflow-y" />
+        <footer>
+            <Footer />
+        </footer>
+    </div>
+</Notifications>

@@ -50,7 +50,8 @@ func SelectEpub() string {
 
 func LoadCalibreDB() (calibre.CalibreDB, error) {
 	db := calibre.CalibreDB{}
-	filename, err := dialog.File().Filter("Calibre DB", "db").Load()
+	filename, err := dialog.Directory().Title("Load images").Browse()
+	//filename, err := dialog.File().Filter("Calibre DB", "db").Load()
 	if err != nil {
 		return db, err
 	}

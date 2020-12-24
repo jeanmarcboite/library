@@ -2,13 +2,22 @@
     import Dropdown from "./Dropdown.svelte";
     import FaSearch from "svelte-icons/fa/FaSearch.svelte";
     import FaDatabase from "svelte-icons/fa/FaDatabase.svelte";
+    import { getNotificationsContext } from "svelte-notifications";
+    const { addNotification } = getNotificationsContext();
 
     const selectEpub = () => {
         SelectEpub().then(console.log);
     };
 
     const loadCalibreDB = () => {
-        LoadCalibreDB().then(console.log, console.log);
+        LoadCalibreDB().then(console.log, (error) => {
+            addNotification({
+                type: "danger",
+                text: error,
+                position: "bottom-right",
+                removeAfter: 6000,
+            });
+        });
     };
 
     const logClick = () => {
