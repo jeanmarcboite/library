@@ -1,7 +1,10 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
+	"os/signal"
+	"time"
 
 	"os"
 
@@ -67,8 +70,9 @@ var guiCmd = &cobra.Command{
 		url := "http://localhost" + listenTo
 		fmt.Println("Listen to " + url)
 		go runWebview(url)
-		err := http.ListenAndServe(listenTo, r)
-		log.Fatal().Err(err).Msg("gui")
+		startHttpServer(listenTo, r)
+		//err := http.ListenAndServe(listenTo, r)
+		//log.Fatal().Err(err).Msg("gui")
 	},
 }
 
@@ -135,4 +139,34 @@ func runWebview(url string) {
 	w.Run()
 	//w.Destroy()
 	log.Debug().Msg("That's all, folks")
+}
+
+// https://stackoverflow.com/questions/39320025/how-to-stop-http-listenandserve
+func startHttpServer(addr string, handler http.Handler) error {
+	srv := &http.Server{Addr: addr, Handler: handler}
+	var err error = nil
+	go func() {
+		if err = srv.ListenAndServe(); err != nil {
+			// handle err
+			//log.Fatalf("ListenAndServe(): %v", err)
+		}
+	}()
+
+	// Setting up signal capturing
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, os.Interrupt)
+
+	// Waiting for SIGINT (pkill -2)
+	<-stop
+	if err != nil {
+		return fmt.Errorf("Server: %v", err.Error())
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err = srv.Shutdown(ctx); err != nil {
+		return fmt.Errorf("Server shut down: %v", err.Error())
+	}
+
+	return nil
 }
