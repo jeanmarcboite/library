@@ -26,6 +26,15 @@ type errorData struct {
 	Text  string
 }
 
+type AppInfo struct {
+	Name    string
+	Version string
+}
+
+func appInfo() AppInfo {
+	return AppInfo{Name: "BookinS", Version: "0.1.0"}
+}
+
 // gui webview
 var guiCmd = &cobra.Command{
 	Use:   "gui",
@@ -109,6 +118,8 @@ func runWebview(url string) {
 	defer w.Destroy()
 	w.SetTitle("Minimal webview example")
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
+	w.Bind("AppInfo", appInfo)
+
 	w.Navigate(url)
 	w.Run()
 }

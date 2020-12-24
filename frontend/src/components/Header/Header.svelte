@@ -2,6 +2,8 @@
     import Hamburger from "./Hamburger.svelte";
     import TiCog from "svelte-icons/ti/TiCog.svelte";
     import Navbar from "./Navbar.svelte";
+
+    AppInfo().then(console.log);
 </script>
 
 <style>

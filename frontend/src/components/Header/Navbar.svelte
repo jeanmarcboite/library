@@ -3,6 +3,8 @@
     import FaSearch from "svelte-icons/fa/FaSearch.svelte";
     import FaDatabase from "svelte-icons/fa/FaDatabase.svelte";
 
+    const selectFile = console.log;
+
     const logClick = () => {
         console.log("click");
     };
@@ -12,17 +14,11 @@
             name: "File",
             items: [
                 {
-                    name: "Languages",
-                    items: [
-                        {
-                            name: "Python",
-                            items: [{ name: "2.7" }, { name: "3+" }],
-                        },
-                        { name: "Go" },
-                    ],
+                    name: "Import EPUB",
+                    onclick: selectFile,
                 },
                 {
-                    name: "Load database...",
+                    name: "Load calibre database...",
                     icon: FaDatabase,
                     onclick: logClick,
                 },
