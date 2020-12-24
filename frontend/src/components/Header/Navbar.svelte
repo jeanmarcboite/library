@@ -3,7 +3,9 @@
     import FaSearch from "svelte-icons/fa/FaSearch.svelte";
     import FaDatabase from "svelte-icons/fa/FaDatabase.svelte";
 
-    const selectFile = console.log;
+    const selectEpub = () => {
+        SelectEpub().then(console.log);
+    };
 
     const logClick = () => {
         console.log("click");
@@ -15,7 +17,7 @@
             items: [
                 {
                     name: "Import EPUB",
-                    onclick: selectFile,
+                    onclick: selectEpub,
                 },
                 {
                     name: "Load calibre database...",

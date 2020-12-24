@@ -18,6 +18,7 @@ import (
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/rawbytes"
 	"github.com/spf13/cobra"
+	"github.com/sqweek/dialog"
 	"github.com/webview/webview"
 )
 
@@ -33,6 +34,12 @@ type AppInfo struct {
 
 func appInfo() AppInfo {
 	return AppInfo{Name: Koanf.String("app.name"), Version: Koanf.String("app.version")}
+}
+
+func SelectEpub() string {
+	filename, _ := dialog.File().Filter("Epub file", "epub").Load()
+
+	return filename
 }
 
 // gui webview
@@ -119,6 +126,7 @@ func runWebview(url string) {
 	w.SetTitle("Minimal webview example")
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Bind("AppInfo", appInfo)
+	w.Bind("SelectEpub", SelectEpub)
 
 	w.Navigate(url)
 	w.Run()

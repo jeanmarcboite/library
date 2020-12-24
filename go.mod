@@ -17,5 +17,6 @@ require (
 	github.com/rs/zerolog v1.20.0
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/viper v1.7.1
+	github.com/sqweek/dialog v0.0.0-20200911184034-8a3d98e8211d
 	github.com/webview/webview v0.0.0-20200724072439-e0c01595b361
 )
