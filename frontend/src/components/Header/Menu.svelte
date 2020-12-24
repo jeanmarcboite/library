@@ -42,7 +42,10 @@
             <span class="m-1 icon">
                 <svelte:component this={menu.icon} /></span>
         {/if}
-        <span class="flex-1 pr-1"> {menu.name} </span>
+        <span
+            class="flex-1 pr-1 {menu.className ? menu.className : 'text-white'}">
+            {menu.name}
+        </span>
         {#if menu.items}
             <span class="mr-auto">
                 <svg

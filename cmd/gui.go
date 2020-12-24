@@ -123,7 +123,7 @@ func runWebview(url string) {
 	debug := true
 	w := webview.New(debug)
 	defer w.Destroy()
-	w.SetTitle("Minimal webview example")
+	w.SetTitle(appInfo().Name)
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Bind("AppInfo", appInfo)
 	w.Bind("SelectEpub", SelectEpub)

@@ -18,19 +18,23 @@
                 {
                     name: "Import EPUB",
                     onclick: selectEpub,
+                    className: "text-gray-300",
                 },
                 {
                     name: "Load calibre database...",
                     icon: FaDatabase,
                     onclick: logClick,
+                    className: "text-red-300",
                 },
             ],
         },
         {
             name: "Edit",
+            className: "disabled text-red-900",
             items: [
                 {
                     name: "Find",
+                    className: "disabled text-red-900",
                     icon: FaSearch,
                     items: [{ name: "Python" }, { name: "Go" }],
                 },

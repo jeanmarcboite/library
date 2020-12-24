@@ -31,7 +31,8 @@
 <div class="inline-block m-2 group">
     <button
         class="flex items-center px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">
-        <span class="flex-1 pr-1 font-semibold button">{dropdown.name}</span>
+        <span
+            class="flex-1 pr-1 font-semibold button  {dropdown.className ? dropdown.className : 'text-white'}">{dropdown.name}</span>
         <span>
             <svg
                 class="w-4 h-4 transition duration-150 ease-in-out fill-current"
