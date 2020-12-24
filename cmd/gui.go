@@ -16,6 +16,7 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"github.com/gorilla/mux"
+	"github.com/jeanmarcboite/books/models/calibre"
 	"github.com/jeanmarcboite/library/assets"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
@@ -24,6 +25,8 @@ import (
 	"github.com/sqweek/dialog"
 	"github.com/webview/webview"
 )
+
+var debug = false
 
 type errorData struct {
 	Title string
@@ -45,6 +48,16 @@ func SelectEpub() string {
 	return filename
 }
 
+func LoadCalibreDB() (calibre.CalibreDB, error) {
+	db := calibre.CalibreDB{}
+	filename, err := dialog.File().Filter("Calibre DB", "db").Load()
+	if err != nil {
+		return db, err
+	}
+
+	return calibre.ReadDB(filename, debug)
+}
+
 // gui webview
 var guiCmd = &cobra.Command{
 	Use:   "gui",
@@ -53,7 +66,7 @@ var guiCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 		// Default level for this example is info, unless debug flag is present
-		debug, _ := cmd.Flags().GetBool("debug")
+		debug, _ = cmd.Flags().GetBool("debug")
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 		if debug {
 			zerolog.SetGlobalLevel(zerolog.DebugLevel)
@@ -131,6 +144,7 @@ func runWebview(url string) {
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Bind("AppInfo", appInfo)
 	w.Bind("SelectEpub", SelectEpub)
+	w.Bind("LoadCalibreDB", LoadCalibreDB)
 	w.Bind("quit", func() {
 		w.Terminate()
 	})

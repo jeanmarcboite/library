@@ -7,6 +7,10 @@
         SelectEpub().then(console.log);
     };
 
+    const loadCalibreDB = () => {
+        LoadCalibreDB().then(console.log, console.log);
+    };
+
     const logClick = () => {
         console.log("click");
     };
@@ -23,7 +27,7 @@
                 {
                     name: "Load calibre database...",
                     icon: FaDatabase,
-                    onclick: logClick,
+                    onclick: loadCalibreDB,
                     className: "text-red-300",
                 },
                 {
