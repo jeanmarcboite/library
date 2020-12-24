@@ -26,6 +26,10 @@
                     onclick: logClick,
                     className: "text-red-300",
                 },
+                {
+                    name: "Exit",
+                    onclick: () => quit(),
+                },
             ],
         },
         {

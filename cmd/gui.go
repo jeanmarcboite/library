@@ -127,7 +127,12 @@ func runWebview(url string) {
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Bind("AppInfo", appInfo)
 	w.Bind("SelectEpub", SelectEpub)
+	w.Bind("quit", func() {
+		w.Terminate()
+	})
 
 	w.Navigate(url)
 	w.Run()
+	//w.Destroy()
+	log.Debug().Msg("That's all, folks")
 }
