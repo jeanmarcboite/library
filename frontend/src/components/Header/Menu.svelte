@@ -58,10 +58,10 @@
             </span>
         {/if}
     </button>
-    {#if menu.items}
+    {#if menu.menu}
         <ul
             class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm min-w-32 ">
-            {#each menu.items as submenu}
+            {#each menu.menu as submenu}
                 <svelte:self menu={submenu} />
             {/each}
         </ul>

@@ -45,7 +45,7 @@
     </button>
     <ul
         class="absolute transition duration-150 ease-in-out origin-top transform scale-0 border rounded-sm group-hover:scale-100 min-w-32">
-        {#each dropdown.items as menu}
+        {#each dropdown.menu as menu}
             <Menu {menu} />
         {/each}
     </ul>

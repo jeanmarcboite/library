@@ -3,31 +3,17 @@
     import Footer from "./components/Footer";
     import Tailwind from "./Tailwind.svelte";
     import Notifications from "svelte-notifications";
-    import { getNotificationsContext } from "svelte-notifications";
-    const { addNotification } = getNotificationsContext();
 
-    let CalibreDB = {};
-    const loadCalibreDB = () => {
-        LoadCalibreDB().then(
-            (db) => {
-                CalibreDB = db;
-                addNotification({
-                    type: "success",
-                    text: `Loaded ${db.Filename} [${db.ID}]`,
-                    position: "bottom-right",
-                    removeAfter: 3000,
-                });
-            },
-            (error) => {
-                addNotification({
-                    type: "danger",
-                    text: error,
-                    position: "bottom-right",
-                    removeAfter: 6000,
-                });
-            }
-        );
-    };
+    import { menu } from "./menu";
+    import Notifier from "./Notifier.svelte";
+    import { onMount } from "svelte";
+
+    import { SetAppNotifier } from "./store";
+
+    let notifier;
+    onMount(() => {
+        SetAppNotifier(notifier);
+    });
 </script>
 
 <style>
@@ -54,7 +40,7 @@
 <Notifications>
     <div id="app" class="flex flex-col w-screen">
         <header>
-            <Header {loadCalibreDB} />
+            <Header {menu} />
         </header>
 
         <main class="flex-grow overflow-y" />
@@ -62,4 +48,5 @@
             <Footer />
         </footer>
     </div>
+    <Notifier bind:this={notifier} />
 </Notifications>
