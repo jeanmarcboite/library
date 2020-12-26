@@ -3,6 +3,8 @@
     import TiCog from "svelte-icons/ti/TiCog.svelte";
     import Navbar from "./Navbar.svelte";
 
+    export let loadCalibreDB;
+
     AppInfo().then(console.log);
 </script>
 
@@ -24,7 +26,7 @@
             <Hamburger />
         </div>
         <ul class="hidden sm:flex sm:flex-row" id="mobileMenu">
-            <Navbar />
+            <Navbar {loadCalibreDB} />
         </ul>
         <div class="flex-grow" />
         <div class="flex flex-row flex-grow-0">

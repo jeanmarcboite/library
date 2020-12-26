@@ -5,29 +5,10 @@
     import { getNotificationsContext } from "svelte-notifications";
     const { addNotification } = getNotificationsContext();
 
+    export let loadCalibreDB;
+
     const selectEpub = () => {
         SelectEpub().then(console.log);
-    };
-
-    const loadCalibreDB = () => {
-        LoadCalibreDB().then(
-            (db) => {
-                addNotification({
-                    type: "success",
-                    text: `Loaded ${db.Filename} [${db.ID}]`,
-                    position: "bottom-right",
-                    removeAfter: 3000,
-                });
-            },
-            (error) => {
-                addNotification({
-                    type: "danger",
-                    text: error,
-                    position: "bottom-right",
-                    removeAfter: 6000,
-                });
-            }
-        );
     };
 
     const logClick = () => {
