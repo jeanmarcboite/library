@@ -1,6 +1,6 @@
 import FaSearch from 'svelte-icons/fa/FaSearch.svelte'
 import FaDatabase from 'svelte-icons/fa/FaDatabase.svelte'
-import { loadCalibreDB } from './actions'
+import { loadCalibreDB } from './store'
 
 enum State {
   Active,

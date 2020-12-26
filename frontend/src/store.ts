@@ -17,7 +17,7 @@ export const loadCalibreDB = () => {
   LoadCalibreDB().then(
     (db) => {
       CalibreDB.set(db)
-      AppNotifier.notify({
+      AppNotifier.addNotification({
         type: 'success',
         text: `Loaded ${db.Filename} [${db.ID}]`,
         position: 'bottom-right',
@@ -25,7 +25,7 @@ export const loadCalibreDB = () => {
       })
     },
     (error) => {
-      AppNotifier.notify({
+      AppNotifier.addNotification({
         type: 'danger',
         text: error,
         position: 'bottom-right',
