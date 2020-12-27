@@ -1,6 +1,7 @@
 <script>
     import Header from "./components/Header";
     import Footer from "./components/Footer";
+    import Main from "./components/Main/CalibreDB.svelte";
     import Tailwind from "./Tailwind.svelte";
     import Notifications from "svelte-notifications";
 
@@ -43,7 +44,9 @@
             <Header {menu} />
         </header>
 
-        <main class="flex-grow overflow-y" />
+        <main class="flex-grow overflow-y">
+            <Main />
+        </main>
         <footer>
             <Footer />
         </footer>

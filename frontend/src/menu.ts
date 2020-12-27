@@ -1,6 +1,6 @@
 import FaSearch from 'svelte-icons/fa/FaSearch.svelte'
 import FaDatabase from 'svelte-icons/fa/FaDatabase.svelte'
-import { loadCalibreDB } from './store'
+import { selectCalibreDB } from './store'
 
 enum State {
   Active,
@@ -23,7 +23,7 @@ export const menu = [
         name: 'Load calibre database...',
         icon: FaDatabase,
         className: 'text-red-300',
-        onclick: loadCalibreDB,
+        onclick: selectCalibreDB,
       },
       {
         name: 'Exit',

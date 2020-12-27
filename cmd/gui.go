@@ -49,7 +49,7 @@ func SelectEpub() string {
 	return filename
 }
 
-func LoadCalibreDB() (calibre.CalibreDB, error) {
+func SelectCalibreDB() (calibre.CalibreDB, error) {
 	db := calibre.CalibreDB{}
 	dirname, err := dialog.Directory().Title("Load Calibre database").Browse()
 	//filename, err := dialog.File().Filter("Calibre DB", "db").Load()
@@ -146,7 +146,7 @@ func runWebview(url string) {
 	w.SetSize(Koanf.Int("window.width"), Koanf.Int("window.height"), webview.HintNone)
 	w.Bind("AppInfo", appInfo)
 	w.Bind("SelectEpub", SelectEpub)
-	w.Bind("LoadCalibreDB", LoadCalibreDB)
+	w.Bind("SelectCalibreDB", SelectCalibreDB)
 	w.Bind("quit", func() {
 		w.Terminate()
 	})

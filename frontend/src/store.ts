@@ -11,26 +11,16 @@ export const SetAppNotifier = (notifier) => {
   AppNotifier = notifier
 }
 
-declare function LoadCalibreDB(): Promise<any>
+declare function SelectCalibreDB(): Promise<any>
 
-export const loadCalibreDB = () => {
-  LoadCalibreDB().then(
+export const selectCalibreDB = () => {
+  SelectCalibreDB().then(
     (db) => {
+      console.log('success')
       CalibreDB.set(db)
-      AppNotifier.addNotification({
-        type: 'success',
-        text: `Loaded ${db.Filename} [${db.ID}]`,
-        position: 'bottom-right',
-        removeAfter: 3000,
-      })
     },
     (error) => {
-      AppNotifier.addNotification({
-        type: 'danger',
-        text: error,
-        position: 'bottom-right',
-        removeAfter: 6000,
-      })
+      console.log(error)
     },
   )
 }
