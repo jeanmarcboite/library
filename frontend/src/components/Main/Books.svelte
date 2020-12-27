@@ -23,7 +23,7 @@
                 Title: b.Title,
                 Authors: b.Authors.map((a) => db.Authors[a].Name).toString(),
                 Date: new Date(b.LastModified.slice(0, 10)).toDateString(),
-                Rating: "Rating",
+                Rating: b.Rating,
                 Tags: b.Tags ? b.Tags.toString() : "",
                 Series: b.Series ? b.Series.map((s) => s.Name).toString() : "",
                 Publisher: b.Publishers.map((p) => p.Name).toString(),
