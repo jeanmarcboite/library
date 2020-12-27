@@ -12,6 +12,7 @@ export const SetAppNotifier = (notifier) => {
 }
 
 declare function SelectCalibreDB(): Promise<any>
+declare function LoadCalibreDB(filename: string): Promise<any>
 
 const setDB = (db) => {
   CalibreDB.set(db)
@@ -35,4 +36,8 @@ const notifyError = (error) => {
 
 export const selectCalibreDB = () => {
   SelectCalibreDB().then(setDB, notifyError)
+}
+
+export const loadCalibreDB = (filename: string) => {
+  LoadCalibreDB(filename).then(setDB, notifyError)
 }

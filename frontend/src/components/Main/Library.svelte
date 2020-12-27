@@ -1,4 +1,5 @@
 <script>
+    import { loadCalibreDB } from "./../../store.ts";
     import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
 
     import { CalibreDB } from "../../store";
@@ -16,7 +17,7 @@
     });
 
     onMount(() => {
-        console.log("mount Library");
+        loadCalibreDB("/home/box/tmp/Calibre/metadata.db");
     });
 </script>
 
