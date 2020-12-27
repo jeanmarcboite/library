@@ -21,14 +21,14 @@
             return {
                 ID: b.ID,
                 Title: b.Title,
-                Authors: "Authors",
-                Date: "Date",
+                Authors: b.Authors.map((a) => db.Authors[a].Name).toString(),
+                Date: new Date(b.LastModified.slice(0, 10)).toDateString(),
                 Rating: "Rating",
-                Tags: "Tags",
-                Series: "Series",
+                Tags: b.Tags ? b.Tags.toString() : "",
+                Series: b.Series ? b.Series.map((s) => s.Name).toString() : "",
                 Publisher: b.Publishers.map((p) => p.Name).toString(),
                 Size: (b.Data.UncompressedSize / 1000000).toFixed(1),
-                Published: b.Pubdate,
+                Published: new Date(b.Pubdate).toDateString(),
             };
         });
     }
