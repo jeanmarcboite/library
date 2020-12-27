@@ -1,5 +1,5 @@
 <script>
-    import { loadCalibreDB } from "./../../store.ts";
+    import { loadCalibreDB } from "../../store";
     import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
 
     import { CalibreDB } from "../../store";
