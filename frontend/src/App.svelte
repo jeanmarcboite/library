@@ -1,7 +1,7 @@
 <script>
     import Header from "./components/Header";
     import Footer from "./components/Footer";
-    import Main from "./components/Main/CalibreDB.svelte";
+    import Main from "./components/Main";
     import Tailwind from "./Tailwind.svelte";
     import Notifications from "svelte-notifications";
 

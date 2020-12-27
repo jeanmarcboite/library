@@ -60,6 +60,10 @@ func SelectCalibreDB() (calibre.CalibreDB, error) {
 	return calibre.ReadDB(filepath.Join(dirname, "metadata.db"), debug)
 }
 
+func LoadCalibreDB(filename string) (calibre.CalibreDB, error) {
+	return calibre.ReadDB(filename, debug)
+}
+
 // gui webview
 var guiCmd = &cobra.Command{
 	Use:   "gui",
@@ -147,6 +151,7 @@ func runWebview(url string) {
 	w.Bind("AppInfo", appInfo)
 	w.Bind("SelectEpub", SelectEpub)
 	w.Bind("SelectCalibreDB", SelectCalibreDB)
+	w.Bind("LoadCalibreDB", LoadCalibreDB)
 	w.Bind("quit", func() {
 		w.Terminate()
 	})
