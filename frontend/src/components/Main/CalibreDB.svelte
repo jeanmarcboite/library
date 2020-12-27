@@ -2,11 +2,14 @@
     import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
 
     import { CalibreDB } from "../../store";
+    import JSONtree from "../JSONTree.svelte";
 
-    let db;
+    let db = {};
 
     const unsubscribe = CalibreDB.subscribe((value) => {
-        //db = JSON.stringify(value);
+        if (value && value.Authors) {
+            db = value;
+        }
         console.log(value);
     });
 </script>
@@ -15,5 +18,7 @@
     <TabList>
         <Tab>CalibreDB</Tab>
     </TabList>
-    <TabPanel>{db}</TabPanel>
+    <TabPanel>
+        <JSONtree value={db} />
+    </TabPanel>
 </Tabs>

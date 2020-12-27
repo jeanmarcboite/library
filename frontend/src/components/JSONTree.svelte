@@ -1,5 +1,5 @@
 <script>
-  import JSONTree from "svelte-json-tree-auto";
+  import JSONTree from "svelte-json-tree";
 
   export let value;
 </script>
