@@ -5,7 +5,7 @@
     let books = [];
     const head = {
         ID: "ID",
-        Title: "Title",
+        Title: { value: "Title", _class: "text-left" },
         Authors: "Author(s)",
         Date: "Date",
         Size: "Size (MB)",
@@ -14,6 +14,7 @@
         Series: "Series",
         Publisher: "Publisher",
         Published: "Published",
+        _class: "bg-red-200 text-red-700",
     };
     $: if (db && db.Books) {
         books = [...Object.keys(db.Books)].map((bookID) => {
