@@ -9,9 +9,14 @@
 
     onMount(() => {
         new Tabulator(tableComponent, {
-            data: data, //link data to table
+            data, //link data to table
             reactiveData: true, //enable data reactivity
-            columns: columns, //define table columns
+            columns, //define table columns
+            layout: "fitColumns", //fit columns to width of table (optional)
+            rowClick: function (e, row) {
+                //trigger an alert message when the row is clicked
+                alert("Row " + row.getData().id + " Clicked!!!!");
+            },
         });
     });
 </script>
