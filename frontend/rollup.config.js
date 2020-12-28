@@ -7,7 +7,7 @@ import image from '@rollup/plugin-image'
 import babel from 'rollup-plugin-babel'
 import sveltePreprocess from 'svelte-preprocess'
 import typescript from '@rollup/plugin-typescript'
-
+import css from 'rollup-plugin-css-only'
 const production = !process.env.ROLLUP_WATCH
 
 function serve() {
@@ -45,6 +45,7 @@ export default {
   },
   plugins: [
     image(),
+    css({ output: 'vendor.css' }),
     svelte({
       preprocess: sveltePreprocess({
         postcss: {
