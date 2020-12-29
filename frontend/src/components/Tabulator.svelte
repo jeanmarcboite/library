@@ -1,14 +1,14 @@
 <script>
     import "tabulator-tables/dist/css/tabulator_simple.css";
     import Tabulator from "tabulator-tables";
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
 
     export let data, columns;
 
-    let tableComponent;
+    let tableComponent, tabulator;
 
     onMount(() => {
-        new Tabulator(tableComponent, {
+        tabulator = new Tabulator(tableComponent, {
             data, //link data to table
             groupBy: "Authors",
             groupToggleElement: "header", //toggle group on click anywhere in the group header
@@ -51,6 +51,8 @@
             },
         });
     });
+
+    afterUpdate(() => tabulator.setData(data));
 </script>
 
 <style>
