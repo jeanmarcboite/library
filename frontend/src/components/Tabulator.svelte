@@ -12,7 +12,7 @@
             data, //link data to table
             reactiveData: true, //enable data reactivity
             columns, //define table columns
-            layout: "fitDatafill", //fit columns to width of table (optional)
+            layout: "fitDataFill", //fit columns to width of table (optional)
             rowClick: function (e, row) {
                 //trigger an alert message when the row is clicked
                 alert("Row " + row.getData().id + " Clicked!!!!");

@@ -4,7 +4,15 @@
     let data = undefined;
     const columns = [
         { title: "Title", field: "title", hozAlign: "left", width: 256 },
-        { title: "Authors(s)", field: "Authors" },
+        {
+            title: "Authors(s)",
+            field: "Authors",
+            sorter: function (a, b) {
+                return String(a)
+                    .toLowerCase()
+                    .localeCompare(String(b).toLowerCase());
+            },
+        },
         { title: "Date", field: "Date" },
         { title: "Size (MB)", field: "Size", hozAlign: "center" },
         {
@@ -33,7 +41,6 @@
                 Published: new Date(b.Pubdate).toDateString(),
             };
         });
-        console.log(data);
     }
 </script>
 
