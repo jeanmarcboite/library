@@ -17,7 +17,7 @@
     });
 
     onMount(() => {
-        loadCalibreDB("/home/box/tmp/Calibre/metadata.db");
+        loadCalibreDB();
     });
 </script>
 

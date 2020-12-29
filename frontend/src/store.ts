@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store'
+import localforage from 'localforage'
 
 export const settingsOpen = false
 export const CalibreDB = writable(undefined)
@@ -13,10 +14,10 @@ export const SetAppNotifier = (notifier) => {
 
 declare function SelectCalibreDB(): Promise<any>
 declare function LoadCalibreDB(filename: string): Promise<any>
-
 const setDB = (db) => {
   CalibreDB.set(db)
-  console.log(AppNotifier.ctx)
+
+  localforage.setItem('CalibreDB', db.Filename)
   AppNotifier.notify({
     type: 'success',
     text: `Loaded ${db.Filename} [${db.ID}]`,
@@ -38,6 +39,12 @@ export const selectCalibreDB = () => {
   SelectCalibreDB().then(setDB, notifyError)
 }
 
-export const loadCalibreDB = (filename: string) => {
-  LoadCalibreDB(filename).then(setDB, notifyError)
+export const loadCalibreDB = (filename: string = null) => {
+  if (filename) {
+    LoadCalibreDB(filename).then(setDB, notifyError)
+  } else {
+    localforage
+      .getItem('CalibreDB')
+      .then((value: string) => LoadCalibreDB(value).then(setDB, notifyError))
+  }
 }
