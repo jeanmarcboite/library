@@ -18,6 +18,7 @@ const setDB = (db) => {
   CalibreDB.set(db)
 
   localforage.setItem('CalibreDB', db.Filename)
+  localforage.setItem('db', JSON.stringify(db))
   AppNotifier.notify({
     type: 'success',
     text: `Loaded ${db.Filename} [${db.ID}]`,
@@ -44,7 +45,20 @@ export const loadCalibreDB = (filename: string = null) => {
     LoadCalibreDB(filename).then(setDB, notifyError)
   } else {
     localforage
-      .getItem('CalibreDB')
-      .then((value: string) => LoadCalibreDB(value).then(setDB, notifyError))
+      .getItem('db')
+      .then((value: string) => {
+        try {
+          setDB(JSON.parse(value))
+        } catch (e) {
+          notifyError(e)
+        }
+      })
+      .catch(() => {
+        localforage
+          .getItem('CalibreDB')
+          .then((value: string) =>
+            LoadCalibreDB(value).then(setDB, notifyError),
+          )
+      })
   }
 }
