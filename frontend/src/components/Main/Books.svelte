@@ -2,16 +2,27 @@
     import Tabulator from "../Tabulator.svelte";
     export let db;
     let data = undefined;
+    var printIcon = function (cell, formatterParams, onRendered) {
+        //plain text value
+        return "I";
+    };
     const columns = [
-        { title: "Title", field: "title", hozAlign: "left", width: 256 },
+        { formatter: "responsiveCollapse", headerSort: false },
+        { formatter: printIcon, width: 40, hozAlign: "center", tooltip: true },
+        { title: "Title", field: "title", hozAlign: "left", widthGrow: 1 },
         {
-            title: "Authors(s)",
+            title: "Authors",
             field: "Authors",
             sorter: function (a, b) {
                 return String(a)
                     .toLowerCase()
                     .localeCompare(String(b).toLowerCase());
             },
+        },
+        {
+            title: "Comment",
+            field: "Comment",
+            responsive: 10,
         },
         { title: "Date", field: "Date" },
         { title: "Size (MB)", field: "Size", hozAlign: "center" },
@@ -32,6 +43,7 @@
                 id: b.ID,
                 title: b.Title,
                 Authors: b.Authors.map((a) => db.Authors[a].Name).toString(),
+                Comment: b.Comment,
                 Date: new Date(b.LastModified.slice(0, 10)).toDateString(),
                 Rating: b.Rating,
                 Tags: b.Tags ? b.Tags.toString() : "",
