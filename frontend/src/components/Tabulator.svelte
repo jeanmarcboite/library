@@ -38,6 +38,11 @@
                 //trigger an alert message when the row is clicked
                 alert("Row " + row.getData().id + " Clicked!!!!");
             },
+            cellClick: function (e, cell) {
+                //e - the click event object
+                //cell - cell component
+                console.log(cell);
+            },
             tooltips: function (cell) {
                 //cell - cell component
 
