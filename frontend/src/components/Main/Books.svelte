@@ -36,6 +36,10 @@
         { title: "Publisher", field: "Publisher" },
         { title: "Published", field: "Published" },
     ];
+
+    const mapStrings = (array) =>
+        array ? array.map((p) => p.Name).toString() : "";
+
     $: if (db && db.Books) {
         data = [...Object.keys(db.Books)].map((bookID) => {
             const b = db.Books[bookID];
@@ -47,8 +51,8 @@
                 Date: new Date(b.LastModified.slice(0, 10)).toDateString(),
                 Rating: b.Rating,
                 Tags: b.Tags ? b.Tags.toString() : "",
-                Series: b.Series ? b.Series.map((s) => s.Name).toString() : "",
-                Publisher: b.Publishers.map((p) => p.Name).toString(),
+                Series: mapStrings(b.Series),
+                Publisher: mapStrings(b.Publishers),
                 Size: (b.Data.UncompressedSize / 1000000).toFixed(1),
                 Published: new Date(b.Pubdate).toDateString(),
             };
