@@ -21,8 +21,41 @@
     });
 </script>
 
-<style global>
-    @import "../../node_modules/tabulator-tables/dist/css/tabulator_simple.css";
+<style>
+    @import "../../node_modules/tabulator-tables/dist/css/tabulator.css";
+
+    /*Theme the Tabulator element*/
+    .table-component {
+        background-color: #ccc;
+        border: 1px solid #333;
+        border-radius: 10px;
+    }
+
+    /*Theme the header*/
+    .table-component .tabulator-header {
+        background-color: #333;
+        color: #fff;
+    }
+
+    /*Allow column header names to wrap lines*/
+    .table-component .tabulator-header .tabulator-col,
+    .table-component .tabulator-header .tabulator-col-row-handle {
+        white-space: normal;
+    }
+
+    /*Color the table rows*/
+    .table-component .tabulator-tableHolder .tabulator-table .tabulator-row {
+        color: #fff;
+        background-color: #666;
+    }
+
+    /*Color even rows*/
+    .table-component
+        .tabulator-tableHolder
+        .tabulator-table
+        .tabulator-row:nth-child(even) {
+        background-color: #444;
+    }
 </style>
 
-<div bind:this={tableComponent} />
+<div class="table-component" bind:this={tableComponent} />
