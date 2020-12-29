@@ -1,5 +1,5 @@
 <script>
-    import Table from "../Table.svelte";
+    import Tabulator from "../Tabulator.svelte";
     export let db;
     let data = undefined;
     const columns = [
@@ -34,5 +34,5 @@
 </script>
 
 {#if data}
-    <Table {data} {columns} />
+    <Tabulator {data} {columns} />
 {/if}
