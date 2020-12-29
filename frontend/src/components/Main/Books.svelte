@@ -1,14 +1,14 @@
 <script>
     import Tabulator from "../Tabulator.svelte";
+    import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
     export let db;
     let data = undefined;
     var printIcon = function (cell, formatterParams, onRendered) {
-        //plain text value
-        return "I";
+        //return "<i class='fa fa-print'></i>";
+        return "<span class='m-1 icon'><svelte:component this={FaInfoCircle} /></span>";
     };
     const columns = [
         { formatter: "responsiveCollapse", headerSort: false },
-        { formatter: printIcon, width: 40, hozAlign: "center", tooltip: true },
         { title: "Title", field: "title", hozAlign: "left", widthGrow: 1 },
         {
             title: "Authors",
