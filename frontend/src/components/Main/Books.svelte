@@ -9,7 +9,13 @@
     };
     const columns = [
         { formatter: "responsiveCollapse", headerSort: false },
-        { title: "Title", field: "title", hozAlign: "left", widthGrow: 1 },
+        {
+            title: "Title",
+            field: "title",
+            hozAlign: "left",
+            widthGrow: 1,
+            editor: "input",
+        },
         {
             title: "Authors",
             field: "Authors",
