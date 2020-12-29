@@ -4,7 +4,6 @@
 
     import { CalibreDB } from "../../store";
     import Books from "./Books.svelte";
-    import FouitaBooks from "./FouitaBooks.svelte";
     import JSONtree from "../JSONTree.svelte";
     import { onMount } from "svelte";
 
@@ -25,14 +24,10 @@
 <Tabs>
     <TabList>
         <Tab>Books</Tab>
-        <Tab>FouitaBooks</Tab>
         <Tab>CalibreDB</Tab>
     </TabList>
     <TabPanel>
         <Books {db} />
-    </TabPanel>
-    <TabPanel>
-        <FouitaBooks {db} />
     </TabPanel>
     <TabPanel>
         <JSONtree value={db} />

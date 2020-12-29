@@ -58,4 +58,4 @@
     }
 </style>
 
-<div class="table-component" bind:this={tableComponent} />
+<div class="m-4 table-component" bind:this={tableComponent} />
