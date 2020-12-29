@@ -39,13 +39,26 @@
         {
             title: "Authors",
             field: "Authors",
+            mutator: function (value, data, type, params, component) {
+                let name = db?.Authors[value]?.Name;
+                if (name == null) {
+                    return value;
+                }
+                return name;
+            },
             sorter: function (a, b) {
                 return String(a)
                     .toLowerCase()
                     .localeCompare(String(b).toLowerCase());
             },
         },
-        { title: "Date", field: "Date" },
+        {
+            title: "Date",
+            field: "LastModified",
+            mutator: function (value, data, type, params, component) {
+                return value ? new Date(value).toDateString() : "";
+            },
+        },
         {
             title: "Size (MB)",
             field: "Size",
@@ -82,20 +95,7 @@
 
     $: if (db && db.Books) {
         data = [...Object.keys(db.Books)].map((bookID) => {
-            const b = db.Books[bookID];
-            return b;
-            return {
-                ID: b.ID,
-                title: b.Title,
-                Authors: b.Authors.map((a) => db.Authors[a].Name).toString(),
-                Date: new Date(b.LastModified.slice(0, 10)).toDateString(),
-                Rating: b.Rating,
-                Tags: b.Tags ? b.Tags.toString() : "",
-                Series: mapStrings(b.Series),
-                Publisher: mapStrings(b.Publishers),
-                Size: (b.Data.UncompressedSize / 1000000).toFixed(1),
-                Published: new Date(b.Pubdate).toDateString(),
-            };
+            return db.Books[bookID];
         });
     }
 </script>
