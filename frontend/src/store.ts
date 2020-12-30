@@ -14,16 +14,19 @@ export const SetAppNotifier = (notifier) => {
 
 declare function SelectCalibreDB(): Promise<any>
 declare function LoadCalibreDB(filename: string): Promise<any>
+export const saveDB = (db, message: string = null) => {
+  localforage.setItem('db', JSON.stringify(db))
+}
 
-export const setDB = (db) => {
-  console.log('Set db: ', db.Books[1].Title, db)
+export const setDB = (db, message: string = null) => {
   CalibreDB.set(db)
 
   localforage.setItem('CalibreDB', db.Filename)
-  localforage.setItem('db', JSON.stringify(db))
+  saveDB(db)
+
   AppNotifier.notify({
     type: 'success',
-    text: `Loaded ${db.Filename} [${db.ID}]`,
+    text: message ? message : `Loaded ${db.Filename} [${db.ID}]`,
     position: 'bottom-right',
     removeAfter: 3000,
   })
@@ -50,7 +53,7 @@ export const loadCalibreDB = (filename: string = null) => {
       .getItem('db')
       .then((value: string) => {
         try {
-          setDB(JSON.parse(value))
+          setDB(JSON.parse(value), 'DB reloaded')
         } catch (e) {
           notifyError(e)
         }

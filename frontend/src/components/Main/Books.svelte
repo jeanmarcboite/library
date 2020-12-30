@@ -2,7 +2,7 @@
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
-    import { selectCalibreDB, setDB } from "../../store";
+    import { selectCalibreDB, setDB, saveDB } from "../../store";
     export let db;
     let data = undefined;
     var printIcon = function (cell, formatterParams, onRendered) {
@@ -55,7 +55,10 @@
             mutator: function (value, data, type, params, component) {
                 if (type == "edit") {
                     let book = db.Books[data.ID];
-                    console.log("mutator: ", book, value);
+                    //console.log("mutator: ", book, value);
+                    book.Title = value;
+                    //console.log("mutator: ", book);
+                    saveDB(db);
                 }
 
                 return value;
