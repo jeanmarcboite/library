@@ -20,6 +20,7 @@
         min-width: 8rem;
     }
     li {
+        z-index: 1000000;
         background-color: #376e6f;
         color: floralwhite;
     }
