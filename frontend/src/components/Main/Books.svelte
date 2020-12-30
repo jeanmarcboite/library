@@ -70,7 +70,7 @@
     };
     const columns = [
         {
-            title: "Authors",
+            title: "Author(s)",
             field: "Authors",
             editor: "input",
             mutator: function (value, data, type, params, component) {
