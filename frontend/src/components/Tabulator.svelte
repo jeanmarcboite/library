@@ -58,10 +58,9 @@
 
     afterUpdate(() => {
         tabulator.setData(data);
-        console.log("setSort");
         tabulator.setSort([
             { column: "Title", dir: "asc" }, //sort by this first
-            { column: "Authors", dir: "asc" }, //sort by this first
+            { column: "Authors", dir: "asc" }, //then by this
         ]);
     });
 </script>
