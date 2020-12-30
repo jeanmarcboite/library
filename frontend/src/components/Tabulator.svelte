@@ -66,7 +66,7 @@
 </script>
 
 <style>
-    @import "../../node_modules/tabulator-tables/dist/css/tabulator.css";
+    @import "./tabulator.css";
 
     /*Theme the Tabulator element*/
     .table-component {

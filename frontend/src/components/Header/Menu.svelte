@@ -11,6 +11,7 @@
        regular css for the nested dropdowns 
     */
     li > ul {
+        z-index: 1000000;
         transform: translatex(100%) scale(0);
     }
     li:hover > ul {
@@ -35,7 +36,7 @@
     }
 </style>
 
-<li class="relative px-3 py-1 rounded-sm">
+<li class="relative z-auto px-3 py-1 rounded-sm">
     <button
         on:click={menu.onclick}
         class="flex items-center w-full text-left outline-none focus:outline-none">
