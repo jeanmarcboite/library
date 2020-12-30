@@ -10,7 +10,11 @@
     onMount(() => {
         tabulator = new Tabulator(tableComponent, {
             data, //link data to table
-            groupBy: "Authors",
+            //groupBy: "Authors",
+            initialSort: [
+                { column: "Authors", dir: "asc" },
+                { column: "Title", dir: "asc" }, //then sort by this second
+            ],
             groupToggleElement: "header", //toggle group on click anywhere in the group header
 
             groupHeader: function (value, count, data, group) {
@@ -36,7 +40,7 @@
             responsiveLayoutCollapseStartOpen: false,
             rowClick: function (e, row) {
                 //trigger an alert message when the row is clicked
-                alert("Row " + row.getData().id + " Clicked!!!!");
+                //alert("Row " + row.getData().id + " Clicked!!!!");
             },
             cellClick: function (e, cell) {
                 //e - the click event object
@@ -52,7 +56,14 @@
         });
     });
 
-    afterUpdate(() => tabulator.setData(data));
+    afterUpdate(() => {
+        tabulator.setData(data);
+        console.log("setSort");
+        tabulator.setSort([
+            { column: "Authors", dir: "asc" }, //sort by this first
+            { column: "Title", dir: "desc" }, //then sort by this second
+        ]);
+    });
 </script>
 
 <style>

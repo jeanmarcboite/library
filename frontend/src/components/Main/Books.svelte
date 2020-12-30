@@ -44,10 +44,50 @@
         console.log(value);
         return value; //return the new value for the cell data.
     };
+    const titleSorter = function (a, b, aRow, bRow, column, dir, sorterParams) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    };
+
+    const authorSorter = function (
+        a,
+        b,
+        aRow,
+        bRow,
+        column,
+        dir,
+        sorterParams
+    ) {
+        //a, b - the two values being compared
+        //aRow, bRow - the row components for the values being compared (useful if you need to access additional fields in the row data for the sort)
+        //column - the column component for the column being sorted
+        //dir - the direction of the sort ("asc" or "desc")
+        //sorterParams - sorterParams object from column definition array
+        //console.log(a, b, aRow, bRow, column, dir, sorterParams);
+        let as = aRow._row.data.AuthorSort;
+        let bs = bRow._row.data.AuthorSort;
+
+        return as.toLowerCase().localeCompare(bs.toLowerCase());
+    };
     const columns = [
+        {
+            title: "Authors",
+            field: "Authors",
+            editor: "input",
+            mutator: function (value, data, type, params, component) {
+                let name = db?.Authors[value]?.Name;
+                //console.log(value, name);
+                if (name == null) {
+                    return value;
+                }
+                return name;
+            },
+            sorter: authorSorter,
+        },
         {
             title: "Title",
             field: "Title",
+            sorter: titleSorter,
+
             hozAlign: "left",
             widthGrow: 1,
             editor: "input",
@@ -62,22 +102,6 @@
                 }
 
                 return value;
-            },
-        },
-        {
-            title: "Authors",
-            field: "Authors",
-            mutator: function (value, data, type, params, component) {
-                let name = db?.Authors[value]?.Name;
-                if (name == null) {
-                    return value;
-                }
-                return name;
-            },
-            sorter: function (a, b) {
-                return String(a)
-                    .toLowerCase()
-                    .localeCompare(String(b).toLowerCase());
             },
         },
         {
