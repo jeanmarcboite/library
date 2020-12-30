@@ -66,18 +66,18 @@
 </script>
 
 <style>
-    @import "./tabulator.css";
+    @import "../../node_modules/tabulator-tables/dist/css/tabulator.css";
 
     /*Theme the Tabulator element*/
     .table-component {
         background-color: #ccc;
-        border: 1px solid #333;
-        border-radius: 10px;
+        border: 1px solid blue;
+        border-radius: 5px;
     }
 
     /*Theme the header*/
     .table-component .tabulator-header {
-        background-color: #333;
+        background-color: rebeccapurple;
         color: #fff;
     }
 
@@ -102,4 +102,4 @@
     }
 </style>
 
-<div class="m-4 table-component" bind:this={tableComponent} />
+<div class="m-8 table-component" bind:this={tableComponent} />
