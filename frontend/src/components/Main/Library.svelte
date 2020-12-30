@@ -12,8 +12,10 @@
     const unsubscribe = CalibreDB.subscribe((value) => {
         if (value && value.Authors) {
             db = value;
+            console.log(db);
+            console.log(db.Books[1].Title);
+            console.log(value.Books[1].Title);
         }
-        console.log(value);
     });
 
     onMount(() => {

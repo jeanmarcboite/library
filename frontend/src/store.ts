@@ -14,7 +14,9 @@ export const SetAppNotifier = (notifier) => {
 
 declare function SelectCalibreDB(): Promise<any>
 declare function LoadCalibreDB(filename: string): Promise<any>
-const setDB = (db) => {
+
+export const setDB = (db) => {
+  console.log('Set db: ', db.Books[1].Title, db)
   CalibreDB.set(db)
 
   localforage.setItem('CalibreDB', db.Filename)

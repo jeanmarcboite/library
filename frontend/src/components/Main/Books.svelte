@@ -1,6 +1,8 @@
 <script>
+    import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
+    import { selectCalibreDB, setDB } from "../../store";
     export let db;
     let data = undefined;
     var printIcon = function (cell, formatterParams, onRendered) {
@@ -32,7 +34,16 @@
         }
         return value;
     };
-
+    var customAccessor = function (value, data, type, params, column, row) {
+        //value - original value of the cell
+        //data - the data for the row
+        //type - the type of access occurring  (data|download|clipboard)
+        //params - the accessorParams object passed from the column definition
+        //column - column component for the column this accessor is bound to
+        //row - row component for the row
+        console.log(value);
+        return value; //return the new value for the cell data.
+    };
     const columns = [
         {
             title: "Title",
@@ -40,6 +51,15 @@
             hozAlign: "left",
             widthGrow: 1,
             editor: "input",
+            accessor: customAccessor,
+            mutator: function (value, data, type, params, component) {
+                if (type == "edit") {
+                    let book = db.Books[data.ID];
+                    console.log("mutator: ", book, value);
+                }
+
+                return value;
+            },
         },
         {
             title: "Authors",
@@ -97,7 +117,7 @@
 
     $: if (db && db.Books) {
         data = [...Object.keys(db.Books)].map((bookID) => {
-            return db.Books[bookID];
+            return _.cloneDeep(db.Books[bookID]);
         });
     }
 </script>
