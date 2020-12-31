@@ -38,6 +38,9 @@
             layout: "fitDataFill", //fit columns to width of table (optional)
             responsiveLayout: "collapse",
             responsiveLayoutCollapseStartOpen: false,
+
+            pagination: "local",
+            height: "100%",
             rowClick: function (e, row) {
                 //trigger an alert message when the row is clicked
                 //alert("Row " + row.getData().id + " Clicked!!!!");
@@ -100,6 +103,12 @@
         .tabulator-row:nth-child(even) {
         background-color: #444;
     }
+
+    .wrapper {
+        height: 70vh;
+    }
 </style>
 
-<div class="m-8 table-component" bind:this={tableComponent} />
+<div class="wrapper">
+    <div class="table-component" bind:this={tableComponent} />
+</div>
