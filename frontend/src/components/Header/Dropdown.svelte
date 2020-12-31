@@ -25,6 +25,7 @@
     div,
     ul {
         background-color: #376e6f;
+        z-index: 999;
     }
 </style>
 
