@@ -1,5 +1,5 @@
 <script>
-    import { loadCalibreDB } from "../../store";
+    import { loadCalibreDB, calibreDBTab } from "../../store";
     import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
 
     import { CalibreDB } from "../../store";
@@ -20,15 +20,19 @@
     });
 </script>
 
-<Tabs>
-    <TabList>
-        <Tab>Books</Tab>
-        <Tab>CalibreDB</Tab>
-    </TabList>
-    <TabPanel>
-        <Books {db} />
-    </TabPanel>
-    <TabPanel>
-        <JSONtree value={db} />
-    </TabPanel>
-</Tabs>
+{#if !$calibreDBTab}
+    <Books {db} />
+{:else}
+    <Tabs>
+        <TabList>
+            <Tab>Books</Tab>
+            <Tab>CalibreDB</Tab>
+        </TabList>
+        <TabPanel>
+            <Books {db} />
+        </TabPanel>
+        <TabPanel>
+            <JSONtree value={db} />
+        </TabPanel>
+    </Tabs>
+{/if}

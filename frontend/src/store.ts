@@ -2,6 +2,7 @@ import { writable } from 'svelte/store'
 import localforage from 'localforage'
 
 export const settingsOpen = false
+export const calibreDBTab = writable(false)
 export const CalibreDB = writable(undefined)
 
 export const notifier = writable(undefined)

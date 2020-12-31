@@ -1,6 +1,7 @@
 <script>
     import TiCog from "svelte-icons/ti/TiCog.svelte";
     import Overlay from "svelte-overlay";
+    import { calibreDBTab } from "../../store";
 
     import Switch from "../Switch.svelte";
 
@@ -38,7 +39,8 @@
     <!-- CONTENT -->
     <div
         slot="content"
-        class="flex items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
+        class="items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
+        <Switch bind:checked={$calibreDBTab} id="uno" text="Show calibre DB" />
         <div class="flex items-center justify-center flex-grow">
             <div class="max-w-xl">
                 <div class="flex justify-between p-10 m-5">
