@@ -1,6 +1,6 @@
 <script>
+    import Settings from "./Settings.svelte";
     import Hamburger from "./Hamburger.svelte";
-    import TiCog from "svelte-icons/ti/TiCog.svelte";
     import Navbar from "./Navbar.svelte";
 
     export let menu = [];
@@ -28,9 +28,7 @@
         </ul>
         <div class="flex-grow" />
         <div class="flex flex-row flex-grow-0">
-            <button class="flex-grow-0 m-2 icon">
-                <TiCog />
-            </button>
+            <Settings />
         </div>
     </div>
 </nav>
