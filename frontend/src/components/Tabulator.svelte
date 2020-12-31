@@ -103,12 +103,6 @@
         .tabulator-row:nth-child(even) {
         background-color: #444;
     }
-
-    .wrapper {
-        height: 70vh;
-    }
 </style>
 
-<div class="wrapper">
-    <div class="table-component" bind:this={tableComponent} />
-</div>
+<div class="table-component" bind:this={tableComponent} />

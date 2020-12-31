@@ -21,7 +21,9 @@
 </script>
 
 {#if !$calibreDBTab}
-    <Books {db} />
+    <div class="wrapper" style="height: 88vh;">
+        <Books {db} />
+    </div>
 {:else}
     <Tabs>
         <TabList>
@@ -29,7 +31,9 @@
             <Tab>CalibreDB</Tab>
         </TabList>
         <TabPanel>
-            <Books {db} />
+            <div class="wrapper" style="height: 78vh;">
+                <Books {db} />
+            </div>
         </TabPanel>
         <TabPanel>
             <JSONtree value={db} />
