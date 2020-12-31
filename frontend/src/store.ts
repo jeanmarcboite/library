@@ -2,7 +2,19 @@ import { writable } from 'svelte/store'
 import localforage from 'localforage'
 
 export const settingsOpen = false
+
 export const calibreDBTab = writable(false)
+localforage
+  .getItem('calibreDBTab')
+  .then((value: boolean) => calibreDBTab.set(value))
+calibreDBTab.subscribe((value) => {
+  localforage.setItem('calibreDBTab', value)
+})
+
+const store = writable(localStorage.getItem('store') || '')
+
+store.subscribe((val) => localStorage.setItem('store', val))
+
 export const CalibreDB = writable(undefined)
 
 export const notifier = writable(undefined)
