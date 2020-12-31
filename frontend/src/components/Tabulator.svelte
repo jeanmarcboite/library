@@ -106,3 +106,4 @@
 </style>
 
 <div class="table-component" bind:this={tableComponent} />
+<svelte:window on:resize={() => tabulator.redraw()} />
