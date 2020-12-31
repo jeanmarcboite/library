@@ -15,7 +15,6 @@
     .menu {
         background-color: #376e6f;
         color: floralwhite;
-        z-index: 1000000;
     }
 </style>
 
