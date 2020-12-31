@@ -10,6 +10,9 @@
     /* since nested groupes are not supported we have to use 
        regular css for the nested dropdowns 
     */
+    .ztop {
+        z-index: 1000000;
+    }
     li > ul {
         z-index: 1000000;
         transform: translatex(100%) scale(0);
@@ -36,7 +39,7 @@
     }
 </style>
 
-<li class="relative z-auto px-3 py-1 rounded-sm">
+<li class="relative px-3 py-1 rounded-sm ztop">
     <button
         on:click={menu.onclick}
         class="flex items-center w-full text-left outline-none focus:outline-none">
@@ -48,7 +51,7 @@
             class="flex-1 pr-1 {menu.className ? menu.className : 'text-white'}">
             {menu.name}
         </span>
-        {#if menu.items}
+        {#if menu.menu}
             <span class="mr-auto">
                 <svg
                     class="w-4 h-4 transition duration-150 ease-in-out fill-current"
@@ -62,7 +65,7 @@
     </button>
     {#if menu.menu}
         <ul
-            class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm min-w-32 ">
+            class="absolute top-0 right-0 transition duration-150 ease-in-out origin-top-left border rounded-sm ztop min-w-32 ">
             {#each menu.menu as submenu}
                 <svelte:self menu={submenu} />
             {/each}
