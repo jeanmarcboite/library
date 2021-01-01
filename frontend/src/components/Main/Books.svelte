@@ -2,7 +2,12 @@
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
-    import { selectCalibreDB, setDB, saveDB } from "../../store";
+    import {
+        selectCalibreDB,
+        setDB,
+        saveDB,
+        groupByAuthors,
+    } from "../../store";
     export let db;
     let data = undefined;
     var printIcon = function (cell, formatterParams, onRendered) {
@@ -150,5 +155,5 @@
 </script>
 
 {#if data}
-    <Tabulator {data} {columns} />
+    <Tabulator {data} {columns} groupBy={$groupByAuthors ? 'Authors' : null} />
 {/if}

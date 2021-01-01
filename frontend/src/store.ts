@@ -3,11 +3,37 @@ import localforage from 'localforage'
 
 export const settingsOpen = false
 
-export const calibreDBTab = writable(false)
+const persistable = (key, initialValue) => {
+  const { subscribe, set, update } = writable(initialValue)
+  let currentValue = initialValue
+  localforage.getItem(key).then((value) => {
+    currentValue = value
+    set(value)
+  })
+
+  const Set = (value) => {
+    set(value)
+    currentValue = value
+    localforage.setItem(key, value)
+  }
+
+  return {
+    subscribe,
+    set: Set,
+    update: (f) => {
+      Set(f(currentValue))
+    },
+  }
+}
+
+export const calibreDBTab = persistable('calibreDBTab', false)
+export const groupByAuthors = persistable('groupByAuthors', true)
+
+const ccalibreDBTab = writable(false)
 localforage
   .getItem('calibreDBTab')
-  .then((value: boolean) => calibreDBTab.set(value))
-calibreDBTab.subscribe((value) => {
+  .then((value: boolean) => ccalibreDBTab.set(value))
+ccalibreDBTab.subscribe((value) => {
   localforage.setItem('calibreDBTab', value)
 })
 

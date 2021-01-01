@@ -1,16 +1,19 @@
 <script>
+    import { groupByAuthors } from "./../store.ts";
     import "tabulator-tables/dist/css/tabulator_simple.css";
     import Tabulator from "tabulator-tables";
     import { afterUpdate, onMount } from "svelte";
 
     export let data, columns;
+    export let groupBy = null;
+    let currentGroupBy = null;
 
     let tableComponent, tabulator;
 
-    onMount(() => {
-        tabulator = new Tabulator(tableComponent, {
+    const newTabulator = () => {
+        return new Tabulator(tableComponent, {
             data, //link data to table
-            //groupBy: "Authors",
+            groupBy,
             initialSort: [
                 { column: "Authors", dir: "asc" },
                 { column: "Title", dir: "asc" }, //then sort by this second
@@ -57,14 +60,23 @@
                 return cell.getColumn().getField() + " - " + cell.getValue(); //return cells "field - value";
             },
         });
+    };
+
+    onMount(() => {
+        currentGroupBy = groupBy;
+        tabulator = newTabulator();
     });
 
     afterUpdate(() => {
-        tabulator.setData(data);
-        tabulator.setSort([
-            { column: "Title", dir: "asc" }, //sort by this first
-            { column: "Authors", dir: "asc" }, //then by this
-        ]);
+        if (currentGroupBy !== groupBy) {
+            tabulator = newTabulator();
+        } else {
+            tabulator.setData(data);
+            tabulator.setSort([
+                { column: "Title", dir: "asc" }, //sort by this first
+                { column: "Authors", dir: "asc" }, //then by this
+            ]);
+        }
     });
 </script>
 
