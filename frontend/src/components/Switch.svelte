@@ -3,6 +3,12 @@
   export let text = "";
   export let checked = false;
   export let disabled = false;
+
+  let className = "label";
+
+  // creates a `class` property, even
+  // though it is a reserved word
+  export { className as class };
 </script>
 
 <!-- Switch.svelte -->
@@ -40,7 +46,7 @@
   }
 </style>
 
-<label for={id}>
+<label for={id} class={className}>
   <div class="switch">
     <input
       {id}

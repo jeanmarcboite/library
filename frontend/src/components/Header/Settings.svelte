@@ -19,9 +19,10 @@
         width: 32px;
         height: 32px;
     }
-    .content {
-        border: 1px solid #ddd;
-        background: #f7f7f7;
+    .settings {
+        border: 1px solid rgb(221, 221, 221);
+        background-color: burlywood;
+        color: black;
         padding: 1em;
         width: max-content;
     }
@@ -39,32 +40,15 @@
     <!-- CONTENT -->
     <div
         slot="content"
-        class="items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
+        class="flex items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
         <Switch
             bind:checked={$calibreDBTab}
             id="calibreDBTab"
             text="Show calibre DB" />
         <Switch
+            class="pl-40"
             bind:checked={$groupByAuthors}
             id="groupByAuthors"
             text="group by Author" />
-        <div class="flex items-center justify-center flex-grow">
-            <div class="max-w-xl">
-                <div class="flex justify-between p-10 m-5">
-                    <Switch bind:checked={uno} id="uno" text="uno" />
-                    <Switch bind:checked={dos} id="dos" text="dos" />
-                    <Switch bind:checked={tres} id="tres" text="tres" />
-                    <Switch
-                        bind:checked={quatro}
-                        disabled={true}
-                        id="quatro"
-                        text="quatro" />
-                </div>
-                <div class="mt-5">
-                    <pre
-                        class="p-4 font-mono text-xs bg-cyan-100">{JSON.stringify(values)}</pre>
-                </div>
-            </div>
-        </div>
     </div>
 </Overlay>
