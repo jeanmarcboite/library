@@ -8,11 +8,16 @@
     export let groupBy = null;
     let currentGroupBy = "notset";
 
+    let fontSize = "32px";
+
+    export let index = "ID";
+
     let tableComponent, tabulator;
 
     const newTabulator = () => {
         return new Tabulator(tableComponent, {
-            data, //link data to table
+            //data, //link data to table
+            index,
             groupBy,
             initialSort: [
                 { column: "Authors", dir: "asc" },
@@ -83,6 +88,7 @@
         background-color: #ccc;
         border: 1px solid blue;
         border-radius: 5px;
+        font-size: var(--font-size);
     }
 
     /*Theme the header*/
@@ -112,5 +118,8 @@
     }
 </style>
 
-<div class="table-component" bind:this={tableComponent} />
+<div
+    class="table-component"
+    style="--font-size: {fontSize}"
+    bind:this={tableComponent} />
 <svelte:window on:resize={() => tabulator.redraw()} />

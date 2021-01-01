@@ -3,15 +3,11 @@
     import Hamburger from "./Hamburger.svelte";
     import Navbar from "./Navbar.svelte";
 
+    import Zoom from "../Zoom.svelte";
     export let menu = [];
 </script>
 
 <style>
-    .icon {
-        color: red;
-        width: 32px;
-        height: 32px;
-    }
     .menu {
         background-color: #376e6f;
         color: floralwhite;
@@ -28,6 +24,7 @@
         </ul>
         <div class="flex-grow" />
         <div class="flex flex-row flex-grow-0">
+            <Zoom />
             <Settings />
         </div>
     </div>
