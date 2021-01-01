@@ -49,6 +49,6 @@
             class="pl-40"
             bind:checked={$groupByAuthors}
             id="groupByAuthors"
-            text="group by Author" />
+            text="group by Author (needs reload)" />
     </div>
 </Overlay>

@@ -6,7 +6,7 @@
 
     export let data, columns;
     export let groupBy = null;
-    let currentGroupBy = null;
+    let currentGroupBy = "notset";
 
     let tableComponent, tabulator;
 
@@ -63,20 +63,15 @@
     };
 
     onMount(() => {
-        currentGroupBy = groupBy;
         tabulator = newTabulator();
     });
 
     afterUpdate(() => {
-        if (currentGroupBy !== groupBy) {
-            tabulator = newTabulator();
-        } else {
-            tabulator.setData(data);
-            tabulator.setSort([
-                { column: "Title", dir: "asc" }, //sort by this first
-                { column: "Authors", dir: "asc" }, //then by this
-            ]);
-        }
+        tabulator.setData(data);
+        tabulator.setSort([
+            { column: "Title", dir: "asc" }, //sort by this first
+            { column: "Authors", dir: "asc" }, //then by this
+        ]);
     });
 </script>
 
