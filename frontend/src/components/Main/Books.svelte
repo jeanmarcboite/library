@@ -1,4 +1,5 @@
 <script>
+    import { afterUpdate, onMount } from "svelte";
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
@@ -7,13 +8,18 @@
         setDB,
         saveDB,
         groupByAuthors,
+        fontSize,
     } from "../../store";
     export let db;
-    let data = undefined;
-    var printIcon = function (cell, formatterParams, onRendered) {
-        //return "<i class='fa fa-print'></i>";
-        return "<span class='m-1 icon'><svelte:component this={FaInfoCircle} /></span>";
-    };
+
+    onMount(() => {
+        console.log("books onMount()");
+    });
+
+    afterUpdate(() => {
+        console.log("books afterUpdate()");
+    });
+
     //define custom mutator
     const SizeMutator = function (value, data, type, params, component) {
         //value - original value of the cell
@@ -146,14 +152,12 @@
             },
         },
     ];
-
-    $: if (db && db.Books) {
-        data = [...Object.keys(db.Books)].map((bookID) => {
-            return _.cloneDeep(db.Books[bookID]);
-        });
-    }
 </script>
 
-{#if data}
-    <Tabulator {data} {columns} groupBy={$groupByAuthors ? 'Authors' : null} />
+{#if db && db.Books}
+    <Tabulator
+        {db}
+        {columns}
+        fontSize={$fontSize}
+        groupBy={$groupByAuthors ? 'Authors' : null} />
 {/if}

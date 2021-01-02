@@ -37,6 +37,25 @@ ccalibreDBTab.subscribe((value) => {
   localforage.setItem('calibreDBTab', value)
 })
 
+function createFontSize(initialValue: number) {
+  const { subscribe, set, update } = writable(initialValue)
+
+  return {
+    subscribe,
+    increment: () => update((n) => n + 1),
+    decrement: () =>
+      update((n) => {
+        if (n <= 8) {
+          return 8
+        }
+        return n - 1
+      }),
+    reset: () => set(initialValue),
+  }
+}
+
+export const fontSize = createFontSize(12)
+
 const store = writable(localStorage.getItem('store') || '')
 
 store.subscribe((val) => localStorage.setItem('store', val))

@@ -1,6 +1,8 @@
 <script>
     import TiZoomIn from "svelte-icons/ti/TiZoomIn.svelte";
     import TiZoomOut from "svelte-icons/ti/TiZoomOut.svelte";
+
+    import { fontSize } from "../store";
 </script>
 
 <style>
@@ -11,9 +13,12 @@
     }
 </style>
 
-<button class="flex-grow-0 m-2 icon">
-    <TiZoomOut />
-</button>
-<button class="flex-grow-0 m-2 icon">
-    <TiZoomIn />
-</button>
+<div class="m-2">
+    <button class="flex-grow-0 icon" on:click={fontSize.decrement}>
+        <TiZoomOut />
+    </button>
+    {$fontSize}px
+    <button class="flex-grow-0 icon" on:click={fontSize.increment}>
+        <TiZoomIn />
+    </button>
+</div>

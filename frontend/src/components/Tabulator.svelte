@@ -1,28 +1,23 @@
 <script>
-    import { groupByAuthors } from "./../store.ts";
+    import _ from "lodash";
     import "tabulator-tables/dist/css/tabulator_simple.css";
     import Tabulator from "tabulator-tables";
     import { afterUpdate, onMount } from "svelte";
 
-    export let data, columns;
+    export let db, columns;
     export let groupBy = null;
-    let currentGroupBy = "notset";
-
-    let fontSize = "32px";
-
+    export let fontSize = 16;
     export let index = "ID";
-
     let tableComponent, tabulator;
 
     const newTabulator = () => {
+        let data = [...Object.keys(db.Books)].map((bookID) => {
+            return _.cloneDeep(db.Books[bookID]);
+        });
         return new Tabulator(tableComponent, {
-            //data, //link data to table
+            data, //link data to table
             index,
             groupBy,
-            initialSort: [
-                { column: "Authors", dir: "asc" },
-                { column: "Title", dir: "asc" }, //then sort by this second
-            ],
             groupToggleElement: "header", //toggle group on click anywhere in the group header
 
             groupHeader: function (value, count, data, group) {
@@ -66,13 +61,13 @@
             },
         });
     };
-
     onMount(() => {
-        tabulator = newTabulator();
+        console.log("tabulator onMount()");
     });
 
     afterUpdate(() => {
-        tabulator.setData(data);
+        console.log("tabulator afterUpdate()");
+        tabulator = newTabulator();
         tabulator.setSort([
             { column: "Title", dir: "asc" }, //sort by this first
             { column: "Authors", dir: "asc" }, //then by this
@@ -88,7 +83,6 @@
         background-color: #ccc;
         border: 1px solid blue;
         border-radius: 5px;
-        font-size: var(--font-size);
     }
 
     /*Theme the header*/
@@ -120,6 +114,6 @@
 
 <div
     class="table-component"
-    style="--font-size: {fontSize}"
+    style="font-size: {fontSize}px;"
     bind:this={tableComponent} />
 <svelte:window on:resize={() => tabulator.redraw()} />
