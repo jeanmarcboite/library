@@ -29,14 +29,6 @@ const persistable = (key, initialValue) => {
 export const calibreDBTab = persistable('calibreDBTab', false)
 export const groupByAuthors = persistable('groupByAuthors', true)
 
-const ccalibreDBTab = writable(false)
-localforage
-  .getItem('calibreDBTab')
-  .then((value: boolean) => ccalibreDBTab.set(value))
-ccalibreDBTab.subscribe((value) => {
-  localforage.setItem('calibreDBTab', value)
-})
-
 function createFontSize(initialValue: number) {
   const { subscribe, set, update } = writable(initialValue)
 
