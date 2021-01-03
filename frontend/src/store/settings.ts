@@ -3,10 +3,10 @@ import { writable, Writable } from 'svelte/store'
 import { fwritable } from './store'
 
 export const calibreDBTab = fwritable('calibreDBTab', false)
-export const groupByAuthors = writable(true)
+export const groupByAuthors = fwritable('groupByAuthors', true)
 
 function createFontSize(initialValue: number) {
-  const { subscribe, set, update } = writable(initialValue)
+  const { subscribe, set, update } = fwritable('fontSize', initialValue)
 
   return {
     subscribe,
