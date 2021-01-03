@@ -28,6 +28,35 @@ function fwritable<T>(key: string, value: T): FWritable<T> {
   return fw
 }
 
+function intwritable(
+  key: string,
+  initialValue: number,
+  minValue: number,
+  maxValue?: number,
+) {
+  let value = initialValue > minValue ? initialValue : minValue
+  if (maxValue && value > maxValue) {
+    value = maxValue
+  }
+
+  const { subscribe, set, update } = fwritable(key, value)
+
+  return {
+    subscribe,
+    set,
+    update,
+    increment: () => update((n) => n + 1),
+    decrement: () =>
+      update((n) => {
+        if (n <= minValue) {
+          return minValue
+        }
+        return n - 1
+      }),
+    reset: () => set(initialValue),
+  }
+}
+
 const notifier = writable(undefined)
 
 var AppNotifier = undefined
@@ -36,4 +65,4 @@ const SetAppNotifier = (notifier) => {
   AppNotifier = notifier
 }
 
-export { fwritable, notifier, AppNotifier, SetAppNotifier }
+export { fwritable, intwritable, notifier, AppNotifier, SetAppNotifier }
