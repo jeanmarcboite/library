@@ -1,7 +1,8 @@
 import localforage from 'localforage'
 import { writable, Writable } from 'svelte/store'
+import { fwritable } from './store'
 
-export const calibreDBTab = writable(true)
+export const calibreDBTab = fwritable('calibreDBTab', false)
 export const groupByAuthors = writable(true)
 
 function createFontSize(initialValue: number) {

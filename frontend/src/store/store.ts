@@ -5,6 +5,7 @@ interface FWritable<T> extends Writable<T> {}
 
 function fwritable<T>(key: string, value: T): FWritable<T> {
   let fw: FWritable<T> = writable<T>(value)
+
   fw.subscribe((value: T) => {
     console.log('setItem', key, value)
     localforage.setItem(key, value)
