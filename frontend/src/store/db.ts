@@ -1,66 +1,8 @@
-import { writable } from 'svelte/store'
 import localforage from 'localforage'
-
-export const settingsOpen = false
-
-const persistable = (key, initialValue) => {
-  const { subscribe, set, update } = writable(initialValue)
-  let currentValue = initialValue
-  localforage.getItem(key).then((value) => {
-    currentValue = value
-    set(value)
-  })
-
-  const Set = (value) => {
-    set(value)
-    currentValue = value
-    localforage.setItem(key, value)
-  }
-
-  return {
-    subscribe,
-    set: Set,
-    update: (f) => {
-      Set(f(currentValue))
-    },
-  }
-}
-
-export const calibreDBTab = persistable('calibreDBTab', false)
-export const groupByAuthors = persistable('groupByAuthors', true)
-
-function createFontSize(initialValue: number) {
-  const { subscribe, set, update } = writable(initialValue)
-
-  return {
-    subscribe,
-    increment: () => update((n) => n + 1),
-    decrement: () =>
-      update((n) => {
-        if (n <= 8) {
-          return 8
-        }
-        return n - 1
-      }),
-    reset: () => set(initialValue),
-  }
-}
-
-export const fontSize = createFontSize(12)
-
-const store = writable(localStorage.getItem('store') || '')
-
-store.subscribe((val) => localStorage.setItem('store', val))
+import { writable, Writable } from 'svelte/store'
+import { AppNotifier } from './store'
 
 export const CalibreDB = writable(undefined)
-
-export const notifier = writable(undefined)
-
-export var AppNotifier = undefined
-
-export const SetAppNotifier = (notifier) => {
-  AppNotifier = notifier
-}
 
 declare function SelectCalibreDB(): Promise<any>
 declare function LoadCalibreDB(filename: string): Promise<any>

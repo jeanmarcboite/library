@@ -49,6 +49,7 @@
     "svelte-json-tree-auto": "^0.1.0",
     "svelte-notifications": "^0.9.9",
     "svelte-overlay": "^1.4.1",
+    "svelte-persistent-store": "^0.1.4",
     "svelte-simple-modal": "^0.6.0",
     "svelte-tabs": "^1.1.0",
     "tabulator-tables": "^4.9.3"
