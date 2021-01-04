@@ -2,7 +2,7 @@
     import { afterUpdate, onMount } from "svelte";
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
-    import Typeahead from "./Typeahead.svelte";
+    import TagEditor from "./TagEditor.svelte";
 
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
     import {
@@ -151,7 +151,7 @@
 </script>
 
 {#if true}
-    <Typeahead {datalist} />
+    <TagEditor {datalist} />
 {:else}
     {#if db && db.Books}
         <Tabulator

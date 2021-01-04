@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let title = "Tags";
     export let datalist: string[];
     let items = datalist;
     let tags: string[] = [];
@@ -42,15 +43,30 @@
         <option value={item} />
     {/each}
 </datalist>
-<input
-    type="text"
-    list="datalist"
-    bind:value={tag}
-    on:change={change}
-    on:keydown={keydown} />
-{#each tags as t}
-    <div
-        class="inline-flex items-center px-3 py-1 ml-4 text-xs font-bold text-green-700 uppercase bg-green-200 rounded-full leading-sm">
-        {t}
+
+<div
+    class="max-w-xs max-w-lg py-12 mx-auto mt-4 text-center bg-blue-800 rounded-lg shadow-2xl rounded-xl">
+    <h1 class="-mt-3 text-3xl font-extrabold text-center text-gray-200">
+        {title}
+    </h1>
+    <div class="container max-w-md py-5 mx-auto">
+        <form method="" action="">
+            <input
+                class="m-4"
+                type="text"
+                list="datalist"
+                bind:value={tag}
+                on:change={change}
+                on:keydown={keydown} />
+            <div class="flex flex-row mt-4">
+                {#each tags as t}
+                    <div
+                        class="inline-flex items-center px-3 py-1 ml-4 text-xs font-bold text-green-700 uppercase bg-green-200 rounded-full leading-sm">
+                        {t}
+                    </div>
+                {/each}
+            </div>
+            <div class="mb-6" />
+        </form>
     </div>
-{/each}
+</div>
