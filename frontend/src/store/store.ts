@@ -14,13 +14,11 @@ function fwritable<T>(key: string, value: T): FWritable<T> {
         fw.set(value)
       }
       fw.subscribe((value: T) => {
-        console.log('setItem', key, value)
         localforage.setItem(key, value)
       })
     })
   } else {
     fw.subscribe((value: T) => {
-      console.log('setItem (no value in forage)', key, value)
       localforage.setItem(key, value)
     })
   }

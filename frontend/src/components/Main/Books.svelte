@@ -2,6 +2,8 @@
     import { afterUpdate, onMount } from "svelte";
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
+    import Typeahead from "./Typeahead.svelte";
+
     import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
     import {
         selectCalibreDB,
@@ -11,14 +13,6 @@
         fontSize,
     } from "../../store";
     export let db;
-
-    onMount(() => {
-        console.log("books onMount()");
-    });
-
-    afterUpdate(() => {
-        console.log("books afterUpdate()");
-    });
 
     //define custom mutator
     const SizeMutator = function (value, data, type, params, component) {
@@ -152,12 +146,18 @@
             },
         },
     ];
+
+    let datalist = ["toread", "reading", "html", "css"];
 </script>
 
-{#if db && db.Books}
-    <Tabulator
-        {db}
-        {columns}
-        fontSize={$fontSize}
-        groupBy={$groupByAuthors ? 'Authors' : null} />
+{#if true}
+    <Typeahead {datalist} />
+{:else}
+    {#if db && db.Books}
+        <Tabulator
+            {db}
+            {columns}
+            fontSize={$fontSize}
+            groupBy={$groupByAuthors ? 'Authors' : null} />
+    {/if}
 {/if}
