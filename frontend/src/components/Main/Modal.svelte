@@ -7,39 +7,29 @@
             modalState.close();
         }
     }
+
+    function save() {
+        modalState.close();
+    }
 </script>
 
-<style>
-    .modal {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto;
-        display: table;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-</style>
-
-{#if false}
-    <!-- tabindex is required, because it tells the browser that this div element is focusable and hence triggers the keydown event -->
+{#if $modalState}
     <div
-        on:keydown={keydown}
-        tabindex={0}
-        autofocus
-        class="fixed z-50 flex overflow-auto modal animated fadeIn pin bg-smoke-dark">
-        <slot />
-    </div>
-{/if}
-{#if true}
-    <div
-        class="absolute inset-0 z-50 object-center w-1/2 m-auto text-white bg-gray-700 border-4 border-red-700 border-solid h-1/2">
-        <slot />
+        class="absolute inset-0 z-50 flex flex-col object-center w-1/2 m-auto text-white bg-gray-700 border-4 border-red-700 border-solid animated fadeIn opacity-80 h-1/2">
+        <div class="h-full">
+            <slot />
+        </div>
+        <div class="absolute bottom-0 right-0 ">
+            <button
+                on:click={modalState.close}
+                class="px-4 py-3 mr-6 font-bold text-blue-500 transition duration-300 ease-in-out border-2 border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white">
+                Cancel
+            </button>
+            <button
+                on:click={save}
+                class="px-4 py-3 mr-6 font-bold text-blue-500 transition duration-300 ease-in-out border-2 border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white">
+                Save
+            </button>
+        </div>
     </div>
 {/if}
