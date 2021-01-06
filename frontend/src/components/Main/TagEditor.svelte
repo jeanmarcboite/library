@@ -1,9 +1,13 @@
 <script lang="ts">
+    import { modalState } from "../../store";
     export let title = "Tags";
     export let datalist: string[];
     let items = datalist;
     let tags: string[] = [];
     let tag = "";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     const add = (s: string) => {
         if (!tags.includes(s)) {
@@ -17,6 +21,14 @@
         console.log(tags, items, datalist);
         tag = "";
     };
+    function save() {
+        dispatch("save", { tags });
+        modalState.close();
+    }
+    function cancel() {
+        dispatch("cancel", { tags });
+        modalState.close();
+    }
 
     const select = (event) => {
         console.log(event.type, event, tag);
@@ -61,6 +73,17 @@
                 </div>
             {/each}
         </div>
-        <div class="mb-6" />
     </form>
+    <div class="absolute bottom-0 right-0 ">
+        <button
+            on:click={cancel}
+            class="px-4 py-3 mr-6 font-bold text-blue-500 transition duration-300 ease-in-out border-2 border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white">
+            Cancel
+        </button>
+        <button
+            on:click={save}
+            class="px-4 py-3 mr-6 font-bold text-blue-500 transition duration-300 ease-in-out border-2 border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white">
+            Save
+        </button>
+    </div>
 </div>

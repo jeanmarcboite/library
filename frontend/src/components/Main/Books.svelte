@@ -16,11 +16,16 @@
     import Modal from "./Modal.svelte";
     export let db;
     let datalist = ["toread", "reading", "html", "css"];
+    let editedCell;
+    let editSuccess;
+    let editCancel;
 
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
         //datalist = cell._cell.initialValue;
-        console.log(cell);
+        editedCell = cell;
+        editSuccess = success;
+        editCancel = cancel;
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
@@ -204,12 +209,20 @@
             },
         },
     ];
+
+    const save = (event) => {
+        console.log("save", event.detail.tags);
+        editSuccess(event.detail.tags);
+    };
+    const cancel = (event) => {
+        editCancel();
+    };
 </script>
 
 {#if false}
     <Modal>
         <div class="relative flex flex-col w-full h-full m-auto">
-            <TagEditor {datalist} />
+            <TagEditor {datalist} on:save={save} />
 
             <span on:click={modalState.close} class="absolute top-0 right-0">
                 <svg
@@ -227,7 +240,7 @@
 {#if db && db.Books}
     <div class="relative w-full h-full">
         <Modal>
-            <TagEditor {datalist} />
+            <TagEditor {datalist} on:save={save} on:cancel={cancel} />
         </Modal>
         <Tabulator
             {db}
