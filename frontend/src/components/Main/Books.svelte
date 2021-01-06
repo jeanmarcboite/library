@@ -16,6 +16,60 @@
     import Modal from "./Modal.svelte";
     export let db;
 
+    const tagEditor = (cell, onRendered, success, cancel) => {
+        modalState.toggle();
+        console.log("tagEidtor");
+    };
+
+    var dateEditor = function (cell, onRendered, success, cancel) {
+        //cell - the cell component for the editable cell
+        //onRendered - function to call when the editor has been rendered
+        //success - function to call to pass the successfuly updated value to Tabulator
+        //cancel - function to call to abort the edit and return to a normal cell
+
+        //create and style input
+        var cellValue = null; /*moment(cell.getValue(), "DD/MM/YYYY").format(
+                "YYYY-MM-DD"
+            ),*/
+        var input = document.createElement("input");
+
+        input.setAttribute("type", "date");
+
+        input.style.padding = "4px";
+        input.style.width = "100%";
+        input.style.boxSizing = "border-box";
+
+        input.value = cellValue;
+
+        onRendered(function () {
+            input.focus();
+            input.style.height = "100%";
+        });
+
+        function onChange() {
+            if (input.value != cellValue) {
+                //success(moment(input.value, "YYYY-MM-DD").format("DD/MM/YYYY"));
+            } else {
+                cancel();
+            }
+        }
+
+        //submit new value on blur or change    input.addEventListener("blur", onChange);
+
+        //submit new value on enter
+        input.addEventListener("keydown", function (e) {
+            if (e.keyCode == 13) {
+                onChange();
+            }
+
+            if (e.keyCode == 27) {
+                cancel();
+            }
+        });
+
+        return input;
+    };
+
     //define custom mutator
     const SizeMutator = function (value, data, type, params, component) {
         //value - original value of the cell
@@ -129,7 +183,7 @@
             field: "Rating",
             hozAlign: "center",
         },
-        { title: "Tags", field: "Tags", width: 64 },
+        { title: "Tags", field: "Tags", width: 64, editor: tagEditor },
         {
             title: "Series",
             field: "Series",
@@ -153,7 +207,6 @@
 </script>
 
 {#if true}
-    <button on:click={modalState.toggle}>Toggle</button>
     <Modal>
         <div>
             <TagEditor {datalist} />
@@ -169,10 +222,6 @@
             </span>
         </div>
     </Modal>
-{:else}
-    <div
-        class="fixed flex flex-col justify-end w-full max-w-md align-top shadow-inner animated fadeInUp md:relative md:justify-center md:rounded md:h-auto md:shadow" />
-    <TagEditor {datalist} />
     {#if db && db.Books}
         <Tabulator
             {db}
