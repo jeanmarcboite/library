@@ -3,7 +3,7 @@
     export let title = "Tags";
     export let datalist: string[];
     let items = datalist;
-    let tags: string[] = [];
+    export let tags: string[] = [];
     let tag = "";
     import { createEventDispatcher } from "svelte";
 

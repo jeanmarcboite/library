@@ -16,13 +16,14 @@
     import Modal from "./Modal.svelte";
     export let db;
     let datalist = ["toread", "reading", "html", "css"];
+    let tags = [];
     let editedCell;
     let editSuccess;
     let editCancel;
 
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
-        //datalist = cell._cell.initialValue;
+        tags = cell._cell.initialValue;
         editedCell = cell;
         editSuccess = success;
         editCancel = cancel;
@@ -240,7 +241,7 @@
 {#if db && db.Books}
     <div class="relative w-full h-full">
         <Modal>
-            <TagEditor {datalist} on:save={save} on:cancel={cancel} />
+            <TagEditor {datalist} {tags} on:save={save} on:cancel={cancel} />
         </Modal>
         <Tabulator
             {db}
