@@ -46,24 +46,21 @@
 
 <div class="relative w-full h-full text-center bg-blue-800 shadow-2xl">
     <h1 class="text-3xl font-extrabold text-center text-gray-200">{title}</h1>
-    <div class="container">
-        <form method="" action="">
-            <input
-                class="m-4"
-                type="text"
-                list="datalist"
-                bind:value={tag}
-                on:change={change}
-                on:keydown={keydown} />
-            <div class="flex flex-row mt-4">
-                {#each tags as t}
-                    <div
-                        class="inline-flex items-center px-3 py-1 ml-4 text-xs font-bold text-green-700 uppercase bg-green-200 rounded-full leading-sm">
-                        {t}
-                    </div>
-                {/each}
-            </div>
-            <div class="mb-6" />
-        </form>
-    </div>
+    <form class="m-2 text-black" method="" action="">
+        <input
+            type="text"
+            list="datalist"
+            bind:value={tag}
+            on:change={change}
+            on:keydown={keydown} />
+        <div class="flex flex-row mt-4">
+            {#each tags as t}
+                <div
+                    class="inline-flex items-center px-3 py-1 ml-4 text-xs font-bold text-green-700 uppercase bg-green-200 rounded-full leading-sm">
+                    {t}
+                </div>
+            {/each}
+        </div>
+        <div class="mb-6" />
+    </form>
 </div>
