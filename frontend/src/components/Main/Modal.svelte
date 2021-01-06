@@ -9,6 +9,24 @@
     }
 </script>
 
+<style>
+    .modal {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        display: table;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+</style>
+
 {#if $modalState}
     <!-- tabindex is required, because it tells the browser that this div element is focusable and hence triggers the keydown event -->
     <div

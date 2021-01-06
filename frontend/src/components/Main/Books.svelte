@@ -155,8 +155,7 @@
 {#if true}
     <button on:click={modalState.toggle}>Toggle</button>
     <Modal>
-        <div
-            class="fixed flex flex-col justify-end w-full max-w-md p-8 m-auto align-top bg-white shadow-inner animated fadeInUp md:relative pin-b pin-x md:justify-center md:rounded md:h-auto md:shadow">
+        <div>
             <TagEditor {datalist} />
 
             <span on:click={modalState.close} class="absolute top-0 right-0">
@@ -171,6 +170,8 @@
         </div>
     </Modal>
 {:else}
+    <div
+        class="fixed flex flex-col justify-end w-full max-w-md align-top shadow-inner animated fadeInUp md:relative md:justify-center md:rounded md:h-auto md:shadow" />
     <TagEditor {datalist} />
     {#if db && db.Books}
         <Tabulator

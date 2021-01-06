@@ -45,7 +45,7 @@
 </datalist>
 
 <div
-    class="max-w-xs max-w-lg py-12 mx-auto mt-4 text-center bg-blue-800 rounded-lg shadow-2xl rounded-xl">
+    class="max-w-xs max-w-lg mx-auto mt-4 text-center bg-blue-800 rounded-lg shadow-2xl rounded-xl">
     <h1 class="-mt-3 text-3xl font-extrabold text-center text-gray-200">
         {title}
     </h1>
