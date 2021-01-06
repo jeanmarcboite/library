@@ -27,13 +27,19 @@
     }
 </style>
 
-{#if $modalState}
+{#if false}
     <!-- tabindex is required, because it tells the browser that this div element is focusable and hence triggers the keydown event -->
     <div
         on:keydown={keydown}
         tabindex={0}
         autofocus
         class="fixed z-50 flex overflow-auto modal animated fadeIn pin bg-smoke-dark">
+        <slot />
+    </div>
+{/if}
+{#if true}
+    <div
+        class="box-border absolute z-50 object-center w-1/2 m-auto text-white bg-gray-700 border-4 border-red-700 border-solid inset-10 h-1/2">
         <slot />
     </div>
 {/if}

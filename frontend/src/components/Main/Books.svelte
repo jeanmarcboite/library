@@ -15,10 +15,12 @@
     } from "../../store";
     import Modal from "./Modal.svelte";
     export let db;
+    let datalist = ["toread", "reading", "html", "css"];
 
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
-        console.log("tagEidtor");
+        //datalist = cell._cell.initialValue;
+        console.log(cell);
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
@@ -202,13 +204,11 @@
             },
         },
     ];
-
-    let datalist = ["toread", "reading", "html", "css"];
 </script>
 
-{#if true}
+{#if false}
     <Modal>
-        <div>
+        <div class="relative flex flex-col w-full h-full m-auto">
             <TagEditor {datalist} />
 
             <span on:click={modalState.close} class="absolute top-0 right-0">
@@ -222,11 +222,17 @@
             </span>
         </div>
     </Modal>
-    {#if db && db.Books}
+{/if}
+
+{#if db && db.Books}
+    <div class="relative w-full h-full">
+        <Modal>
+            <TagEditor {datalist} />
+        </Modal>
         <Tabulator
             {db}
             {columns}
             fontSize={$fontSize}
             groupBy={$groupByAuthors ? 'Authors' : null} />
-    {/if}
+    </div>
 {/if}

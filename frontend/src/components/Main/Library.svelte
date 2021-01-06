@@ -21,7 +21,7 @@
 </script>
 
 {#if !$calibreDBTab}
-    <div class="wrapper" style="height: 88vh;">
+    <div class="wrapper" style="height: 80vh;">
         <Books {db} />
     </div>
 {:else}
