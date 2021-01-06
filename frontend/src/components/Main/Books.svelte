@@ -11,7 +11,9 @@
         saveDB,
         groupByAuthors,
         fontSize,
+        modalState,
     } from "../../store";
+    import Modal from "./Modal.svelte";
     export let db;
 
     //define custom mutator
@@ -151,8 +153,25 @@
 </script>
 
 {#if true}
-    <TagEditor {datalist} />
+    <button on:click={modalState.toggle}>Toggle</button>
+    <Modal>
+        <div
+            class="fixed flex flex-col justify-end w-full max-w-md p-8 m-auto align-top bg-white shadow-inner animated fadeInUp md:relative pin-b pin-x md:justify-center md:rounded md:h-auto md:shadow">
+            <TagEditor {datalist} />
+
+            <span on:click={modalState.close} class="absolute top-0 right-0">
+                <svg
+                    class="w-12 h-12 text-grey hover:text-grey-darkest"
+                    role="button"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"><title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+            </span>
+        </div>
+    </Modal>
 {:else}
+    <TagEditor {datalist} />
     {#if db && db.Books}
         <Tabulator
             {db}
