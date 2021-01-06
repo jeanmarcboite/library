@@ -44,11 +44,9 @@
     {/each}
 </datalist>
 
-<div class="text-center bg-blue-800 rounded-lg shadow-2xl rounded-xl">
-    <h1 class="-mt-3 text-3xl font-extrabold text-center text-gray-200">
-        {title}
-    </h1>
-    <div class="container max-w-md py-5 mx-auto">
+<div class="relative w-full h-full text-center bg-blue-800 shadow-2xl">
+    <h1 class="text-3xl font-extrabold text-center text-gray-200">{title}</h1>
+    <div class="container">
         <form method="" action="">
             <input
                 class="m-4"

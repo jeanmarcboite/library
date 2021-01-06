@@ -39,7 +39,7 @@
 {/if}
 {#if true}
     <div
-        class="box-border absolute z-50 object-center w-1/2 m-auto text-white bg-gray-700 border-4 border-red-700 border-solid inset-10 h-1/2">
+        class="absolute inset-0 z-50 object-center w-1/2 m-auto text-white bg-gray-700 border-4 border-red-700 border-solid h-1/2">
         <slot />
     </div>
 {/if}
