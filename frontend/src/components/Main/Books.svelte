@@ -27,6 +27,7 @@
         editedCell = cell;
         editSuccess = success;
         editCancel = cancel;
+        console.log(db);
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
