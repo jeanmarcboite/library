@@ -16,6 +16,7 @@
     let tags = [];
     let editortitle = "title";
     let editor = {
+        data: undefined,
         cell: undefined,
         success: undefined,
         cancel: undefined,
@@ -36,7 +37,7 @@
         editortitle = "Edit tags";
         modalState.toggle();
         tags = [cell.getValue()];
-        editor = { cell, success, cancel };
+        editor = { data: "Authors", cell, success, cancel };
     };
 
     const tagEditor = (cell, onRendered, success, cancel) => {
@@ -56,7 +57,7 @@
         editortitle = "Edit tags";
         modalState.toggle();
         tags = cell.getValue();
-        editor = { cell, success, cancel };
+        editor = { data: "Tags", cell, success, cancel };
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
@@ -263,7 +264,8 @@
         editor.cell.setValue(event.detail.tags);
         editor.success(event.detail.tags);
         console.log("save", editor.cell._cell.row.data, event.detail.tags);
-        db.Books[editor.cell._cell.row.data.ID].Tags = event.detail.tags;
+        db.Books[editor.cell._cell.row.data.ID][editor.data] =
+            event.detail.tags;
         saveDB(db);
     };
 
