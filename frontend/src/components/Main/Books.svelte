@@ -1,5 +1,6 @@
 <script>
     import { afterUpdate, onMount } from "svelte";
+    import moment from "moment";
     import _ from "lodash";
     import Tabulator from "../Tabulator.svelte";
     import TagEditor from "./TagEditor.svelte";
@@ -23,11 +24,12 @@
 
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
-        tags = cell._cell.initialValue;
+        tags = cell.getValue();
         editedCell = cell;
         editSuccess = success;
         editCancel = cancel;
         console.log(db);
+        console.log(cell.getValue());
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
@@ -37,9 +39,9 @@
         //cancel - function to call to abort the edit and return to a normal cell
 
         //create and style input
-        var cellValue = null; /*moment(cell.getValue(), "DD/MM/YYYY").format(
-                "YYYY-MM-DD"
-            ),*/
+        var cellValue = moment(cell.getValue(), "DD/MM/YYYY").format(
+            "YYYY-MM-DD"
+        );
         var input = document.createElement("input");
 
         input.setAttribute("type", "date");
@@ -57,7 +59,7 @@
 
         function onChange() {
             if (input.value != cellValue) {
-                //success(moment(input.value, "YYYY-MM-DD").format("DD/MM/YYYY"));
+                success(moment(input.value, "YYYY-MM-DD").format("DD/MM/YYYY"));
             } else {
                 cancel();
             }
@@ -180,6 +182,7 @@
             mutator: function (value, data, type, params, component) {
                 return value ? new Date(value).toDateString() : "";
             },
+            editor: dateEditor,
         },
         {
             title: "Size (MB)",
@@ -214,30 +217,15 @@
 
     const save = (event) => {
         console.log("save", event.detail.tags);
+        editedCell.setValue(event.detail.tags);
         editSuccess(event.detail.tags);
+        editSuccess("tag1,tag2");
+        console.log(db);
     };
     const cancel = (event) => {
         editCancel();
     };
 </script>
-
-{#if false}
-    <Modal>
-        <div class="relative flex flex-col w-full h-full m-auto">
-            <TagEditor {datalist} on:save={save} />
-
-            <span on:click={modalState.close} class="absolute top-0 right-0">
-                <svg
-                    class="w-12 h-12 text-grey hover:text-grey-darkest"
-                    role="button"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"><title>Close</title>
-                    <path
-                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-            </span>
-        </div>
-    </Modal>
-{/if}
 
 {#if db && db.Books}
     <div class="relative w-full h-full">
