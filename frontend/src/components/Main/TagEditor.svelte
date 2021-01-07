@@ -1,6 +1,6 @@
 <script lang="ts">
     import { modalState } from "../../store";
-    export let title = "Tags";
+    export let title = "?";
     export let datalist: string[];
     let items = datalist;
     export let tags: string[] = [];

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Books from "./Books.svelte";
     import { afterUpdate, onMount } from "svelte";
     import moment from "moment";
     import _ from "lodash";
@@ -10,8 +11,35 @@
     export let db;
 
     let datalist = [];
-    onMount(() => console.log("Mount", db));
-    afterUpdate(() => {
+    afterUpdate(() => {});
+
+    let tags = [];
+    let editortitle = "title";
+    let editor = {
+        cell: undefined,
+        success: undefined,
+        cancel: undefined,
+    };
+
+    const authorEditor = (cell, onRendered, success, cancel) => {
+        if (db.Books) {
+            let x = Object.values(db.Authors).reduce(
+                (set: Set<string>, author: any) => {
+                    set.add(author.Name);
+
+                    return set;
+                },
+                new Set()
+            );
+            datalist = [...x];
+        }
+        editortitle = "Edit tags";
+        modalState.toggle();
+        tags = [cell.getValue()];
+        editor = { cell, success, cancel };
+    };
+
+    const tagEditor = (cell, onRendered, success, cancel) => {
         if (db.Books) {
             let x = Object.values(db.Books).reduce(
                 (set: Set<string>, book: any) => {
@@ -25,18 +53,7 @@
             );
             datalist = [...x];
         }
-
-        console.log("Update", datalist);
-    });
-
-    let tags = [];
-    let editor = {
-        cell: undefined,
-        success: undefined,
-        cancel: undefined,
-    };
-
-    const tagEditor = (cell, onRendered, success, cancel) => {
+        editortitle = "Edit tags";
         modalState.toggle();
         tags = cell.getValue();
         editor = { cell, success, cancel };
@@ -126,6 +143,7 @@
         console.log(value);
         return value; //return the new value for the cell data.
     };
+
     const titleSorter = function (a, b, aRow, bRow, column, dir, sorterParams) {
         return a.toLowerCase().localeCompare(b.toLowerCase());
     };
@@ -154,8 +172,18 @@
         {
             title: "Author(s)",
             field: "Authors",
-            editor: "input",
+            editor: authorEditor,
             mutator: function (value, data, type, params, component) {
+                if (type == "edit") {
+                    let book = db.Books[data.ID];
+                    console.log("mutator: ", book, value);
+                    //book.Title = value;
+                    //conso
+
+                    saveDB(db);
+
+                    return value;
+                }
                 let name = db?.Authors[value]?.Name;
                 //console.log(value, name);
                 if (name == null) {
@@ -180,6 +208,7 @@
                     //console.log("mutator: ", book, value);
                     book.Title = value;
                     //console.log("mutator: ", book);
+
                     saveDB(db);
                 }
 
@@ -205,7 +234,12 @@
             field: "Rating",
             hozAlign: "center",
         },
-        { title: "Tags", field: "Tags", width: 64, editor: tagEditor },
+        {
+            title: "Tags",
+            field: "Tags",
+            width: 64,
+            editor: tagEditor,
+        },
         {
             title: "Series",
             field: "Series",
@@ -228,6 +262,9 @@
     const save = (event) => {
         editor.cell.setValue(event.detail.tags);
         editor.success(event.detail.tags);
+        console.log("save", editor.cell._cell.row.data, event.detail.tags);
+        db.Books[editor.cell._cell.row.data.ID].Tags = event.detail.tags;
+        saveDB(db);
     };
 
     const cancel = (event) => {
@@ -238,7 +275,12 @@
 {#if db && db.Books}
     <div class="relative w-full h-full">
         <Modal>
-            <TagEditor {datalist} {tags} on:save={save} on:cancel={cancel} />
+            <TagEditor
+                title={editortitle}
+                {datalist}
+                {tags}
+                on:save={save}
+                on:cancel={cancel} />
         </Modal>
         <Tabulator
             {db}
