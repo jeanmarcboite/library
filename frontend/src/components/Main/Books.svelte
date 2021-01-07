@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { afterUpdate, onMount } from "svelte";
     import moment from "moment";
     import _ from "lodash";
@@ -18,6 +18,11 @@
     export let db;
     let datalist = ["toread", "reading", "html", "css"];
     let tags = [];
+    let editor = {
+        cell: undefined,
+        success: undefined,
+        cancel: undefined,
+    };
     let editedCell;
     let editSuccess;
     let editCancel;
@@ -25,11 +30,7 @@
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
         tags = cell.getValue();
-        editedCell = cell;
-        editSuccess = success;
-        editCancel = cancel;
-        console.log(db);
-        console.log(cell.getValue());
+        editor = { cell, success, cancel };
     };
 
     var dateEditor = function (cell, onRendered, success, cancel) {
@@ -216,14 +217,12 @@
     ];
 
     const save = (event) => {
-        console.log("save", event.detail.tags);
-        editedCell.setValue(event.detail.tags);
-        editSuccess(event.detail.tags);
-        editSuccess("tag1,tag2");
-        console.log(db);
+        editor.cell.setValue(event.detail.tags);
+        editor.success(event.detail.tags);
     };
+
     const cancel = (event) => {
-        editCancel();
+        editor.cancel();
     };
 </script>
 
