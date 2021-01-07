@@ -61,17 +61,14 @@
             },
         });
     };
-    onMount(() => {
-        console.log("tabulator onMount()");
-    });
 
     afterUpdate(() => {
-        console.log("tabulator afterUpdate()");
         tabulator = newTabulator();
         tabulator.setSort([
             { column: "Title", dir: "asc" }, //sort by this first
             { column: "Authors", dir: "asc" }, //then by this
         ]);
+        console.log("tabulator afterUpdate", db);
     });
 </script>
 

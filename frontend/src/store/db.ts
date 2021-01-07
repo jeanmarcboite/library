@@ -15,6 +15,7 @@ export const setDB = (db, message: string = null) => {
 
   localforage.setItem('CalibreDB', db.Filename)
   saveDB(db)
+  console.log(db)
 
   AppNotifier.notify({
     type: 'success',
