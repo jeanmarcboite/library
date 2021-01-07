@@ -34,7 +34,7 @@
             );
             datalist = [...x];
         }
-        editortitle = "Edit tags";
+        editortitle = "Author(s)";
         modalState.toggle();
         tags = [cell.getValue()];
         editor = { data: "Authors", cell, success, cancel };
