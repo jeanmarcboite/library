@@ -16,7 +16,27 @@
     } from "../../store";
     import Modal from "./Modal.svelte";
     export let db;
-    let datalist = ["toread", "reading", "html", "css"];
+
+    let datalist = [];
+    onMount(() => console.log("Mount", db));
+    afterUpdate(() => {
+        if (db.Books) {
+            let x = Object.values(db.Books).reduce(
+                (set: Set<string>, book: any) => {
+                    book.Tags?.forEach((element: string) => {
+                        set.add(element);
+                    });
+
+                    return set;
+                },
+                new Set()
+            );
+            datalist = [...x];
+        }
+
+        console.log("Update", datalist);
+    });
+
     let tags = [];
     let editor = {
         cell: undefined,
