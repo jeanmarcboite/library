@@ -5,15 +5,7 @@
     import Tabulator from "../Tabulator.svelte";
     import TagEditor from "./TagEditor.svelte";
 
-    import FaInfoCircle from "svelte-icons/fa/FaInfoCircle.svelte";
-    import {
-        selectCalibreDB,
-        setDB,
-        saveDB,
-        groupByAuthors,
-        fontSize,
-        modalState,
-    } from "../../store";
+    import { saveDB, groupByAuthors, fontSize, modalState } from "../../store";
     import Modal from "./Modal.svelte";
     export let db;
 
@@ -43,9 +35,6 @@
         success: undefined,
         cancel: undefined,
     };
-    let editedCell;
-    let editSuccess;
-    let editCancel;
 
     const tagEditor = (cell, onRendered, success, cancel) => {
         modalState.toggle();
