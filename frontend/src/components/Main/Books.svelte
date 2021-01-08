@@ -112,7 +112,6 @@
 
     const StringArrayFormatter = (field: string) => {
         return function (cell) {
-            console.log(cell);
             if (!cell || !cell._cell) return "";
             const value = cell._cell.row.data[field];
             if (!value) return "";
@@ -121,17 +120,6 @@
             }
             return value;
         };
-    };
-
-    var customAccessor = function (value, data, type, params, column, row) {
-        //value - original value of the cell
-        //data - the data for the row
-        //type - the type of access occurring  (data|download|clipboard)
-        //params - the accessorParams object passed from the column definition
-        //column - column component for the column this accessor is bound to
-        //row - row component for the row
-        console.log(value);
-        return value; //return the new value for the cell data.
     };
 
     const titleSorter = function (a, b, aRow, bRow, column, dir, sorterParams) {
@@ -210,7 +198,7 @@
             mutator: function (value, data, type, params, component) {
                 return value ? new Date(value).toDateString() : "";
             },
-            editor: dateEditor,
+            editor: false,
         },
         {
             title: "Size (MB)",
