@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { selectCalibreDB } from "./../../store/db.ts";
     import Books from "./Books.svelte";
     import { afterUpdate, onMount } from "svelte";
     import moment from "moment";
@@ -109,31 +110,19 @@
         return input;
     };
 
-    //define custom mutator
-    const SizeMutator = function (value, data, type, params, component) {
-        //value - original value of the cell
-        //data - the data for the row
-        //type - the type of mutation occurring  (data|edit)
-        //params - the mutatorParams object from the column definition
-        //component - when the "type" argument is "edit", this contains the cell component for the edited cell, otherwise it is the column component for the column
-        return (data.Data.UncompressedSize / 1000000).toFixed(1);
-        //return value > mutatorParams.threshold; //return the new value for the cell data.
+    const StringArrayFormatter = (field: string) => {
+        return function (cell) {
+            console.log(cell);
+            if (!cell || !cell._cell) return "";
+            const value = cell._cell.row.data[field];
+            if (!value) return "";
+            if (Array.isArray(value)) {
+                return value.map((p) => p.Name).toString();
+            }
+            return value;
+        };
     };
 
-    const StringArrayMutator = function (value, data, type, params, component) {
-        //value - original value of the cell
-        //data - the data for the row
-        //type - the type of mutation occurring  (data|edit)
-        //params - the mutatorParams object from the column definition
-        //component - when the "type" argument is "edit", this contains the cell component for the edited cell, otherwise it is the column component for the column
-        if (!value) {
-            return "";
-        }
-        if (Array.isArray(value)) {
-            return value.map((p) => p.Name).toString();
-        }
-        return value;
-    };
     var customAccessor = function (value, data, type, params, column, row) {
         //value - original value of the cell
         //data - the data for the row
@@ -202,7 +191,6 @@
             hozAlign: "left",
             widthGrow: 1,
             editor: "input",
-            accessor: customAccessor,
             mutator: function (value, data, type, params, component) {
                 if (type == "edit") {
                     let book = db.Books[data.ID];
@@ -228,7 +216,10 @@
             title: "Size (MB)",
             field: "Size",
             hozAlign: "center",
-            mutator: SizeMutator,
+            formatter: (cell) =>
+                (cell._cell.row.data.Data.UncompressedSize / 1000000).toFixed(
+                    1
+                ),
         },
         {
             title: "Rating",
@@ -244,12 +235,12 @@
         {
             title: "Series",
             field: "Series",
-            mutator: StringArrayMutator,
+            mutator: StringArrayFormatter("Series"),
         },
         {
             title: "Publishers",
             field: "Publishers",
-            mutator: StringArrayMutator,
+            mutator: StringArrayFormatter("Publishers"),
         },
         {
             title: "Published",
