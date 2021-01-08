@@ -175,6 +175,7 @@
             title: "Title",
             field: "Title",
             sorter: titleSorter,
+            headerFilter: true,
 
             hozAlign: "left",
             widthGrow: 1,
