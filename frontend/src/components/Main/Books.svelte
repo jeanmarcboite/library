@@ -23,6 +23,26 @@
         cancel: undefined,
     };
 
+    const getAuthors = (db) => {
+        if (db.Books) {
+            let x = Object.values(db.Authors).reduce(
+                (set: Set<string>, author: any) => {
+                    set.add(author.Name);
+
+                    return set;
+                },
+                new Set()
+            );
+            console.log("authors", [...x]);
+            //return ["red", "green", "blue", "orange"];
+            return [...x];
+        }
+
+        return [];
+    };
+
+    let authors = ["red", "green", "blue", "orange"]; //getAuthors(db);
+
     const authorEditor = (cell, onRendered, success, cancel) => {
         if (db.Books) {
             let x = Object.values(db.Authors).reduce(
@@ -150,7 +170,20 @@
         {
             title: "Author(s)",
             field: "Authors",
-            editor: authorEditor,
+            editor: "autocomplete",
+            headerFilter: true,
+            editorParams: () => {
+                return {
+                    showListOnEmpty: true, //show all values when the list is empty,
+                    freetext: true, //allow the user to set the value of the cell to a free text entry
+                    allowEmpty: true, //allow empty string values
+                    searchingPlaceholder: "Filtering ...", //set the search placeholder
+                    emptyPlaceholder: "(no matching results found)", //set the empty list placeholder
+                    values: getAuthors(db),
+                    sortValuesList: "asc", //if creating a list of values from values:true then choose how it should be sorted
+                    verticalNavigation: "hybrid", //navigate to new row when at the top or bottom of the selection list
+                };
+            },
             mutator: function (value, data, type, params, component) {
                 if (type == "edit") {
                     let book = db.Books[data.ID];
