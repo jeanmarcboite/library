@@ -172,7 +172,7 @@
             title: "Author(s)",
             field: "Authors",
             editor: "autocomplete",
-            headerFilter: true,
+            headerFilter: "input",
             editorParams: () => {
                 return {
                     showListOnEmpty: true, //show all values when the list is empty,
