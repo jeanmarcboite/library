@@ -167,7 +167,7 @@
         <option />
         <option value="Authors">Author(s)</option>
         <option value="Title">Title</option>
-        <option value="Tag">Tag</option>
+        <option value="Tags">Tags</option>
         <option value="Size">Size</option>
     </select>
 
