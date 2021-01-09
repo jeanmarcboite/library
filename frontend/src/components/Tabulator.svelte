@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import _ from "lodash";
     import "tabulator-tables/dist/css/tabulator_simple.css";
     import Tabulator from "tabulator-tables";
@@ -9,6 +9,59 @@
     export let fontSize = 16;
     export let index = "ID";
     let tableComponent, tabulator;
+
+    var clearFilters = () => {};
+
+    onMount(() => {
+        //Define variables for input elements
+        var fieldEl = document.getElementById("filter-field");
+        var typeEl = document.getElementById("filter-type");
+        var valueEl = document.getElementById("filter-value");
+
+        //Custom filter example
+        function customFilter(data) {
+            return data.car && data.rating < 3;
+        }
+
+        //Trigger setFilter function with correct parameters
+        function updateFilter() {
+            var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+            var typeVal = typeEl.options[typeEl.selectedIndex].value;
+
+            var filter = filterVal == "function" ? customFilter : filterVal;
+
+            if (filterVal == "function") {
+                typeEl.disabled = true;
+                valueEl.disabled = true;
+            } else {
+                typeEl.disabled = false;
+                valueEl.disabled = false;
+            }
+
+            if (filterVal) {
+                tabulator.setFilter(filter, typeVal, valueEl.value);
+            }
+        }
+
+        //Update filters on value change
+        document
+            .getElementById("filter-field")
+            .addEventListener("change", updateFilter);
+        document
+            .getElementById("filter-type")
+            .addEventListener("change", updateFilter);
+        document
+            .getElementById("filter-value")
+            .addEventListener("keyup", updateFilter);
+
+        clearFilters = () => {
+            fieldEl.value = "";
+            typeEl.value = "=";
+            valueEl.value = "";
+
+            tabulator.clearFilter();
+        };
+    });
 
     const newTabulator = () => {
         let data = [...Object.keys(db.Books)].map((bookID) => {
@@ -108,6 +161,28 @@
         background-color: #444;
     }
 </style>
+
+<div>
+    <select id="filter-field">
+        <option />
+        <option value="Authors">Author(s)</option>
+        <option value="Title">Title</option>
+        <option value="Tag">Tag</option>
+        <option value="Size">Size</option>
+    </select>
+
+    <select id="filter-type">
+        <option value="like">like</option>
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+    </select>
+
+    <input id="filter-value" type="text" placeholder="value to filter" />
+    <button
+        on:click={clearFilters}
+        class="px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">Clear
+        Filters</button>
+</div>
 
 <div
     class="table-component"
