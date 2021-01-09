@@ -166,6 +166,7 @@
 
         return as.toLowerCase().localeCompare(bs.toLowerCase());
     };
+
     const columns = [
         {
             title: "Author(s)",

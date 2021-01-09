@@ -164,11 +164,9 @@
 
 <div>
     <select id="filter-field">
-        <option />
-        <option value="Authors">Author(s)</option>
-        <option value="Title">Title</option>
-        <option value="Tags">Tags</option>
-        <option value="Size">Size</option>
+        {#each columns as col}
+            <option value={col.field}>{col.title}</option>
+        {/each}
     </select>
 
     <select id="filter-type">
