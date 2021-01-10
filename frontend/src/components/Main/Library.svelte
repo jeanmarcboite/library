@@ -3,7 +3,7 @@
     import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
 
     import { CalibreDB } from "../../store";
-    import Books from "./Books.svelte";
+    import Books from "./Books";
     import JSONtree from "../JSONTree.svelte";
     import { onMount } from "svelte";
 
