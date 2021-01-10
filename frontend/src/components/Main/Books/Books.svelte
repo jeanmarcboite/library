@@ -43,6 +43,11 @@
         return [];
     };
 
+    const columnsSort = [
+        { column: "Title", dir: "asc" }, //sort by this first
+        { column: "Authors", dir: "asc" }, //then by this
+    ];
+
     const columns = [
         {
             title: "Author(s)",
@@ -158,6 +163,7 @@
         <Tabulator
             {db}
             {columns}
+            {columnsSort}
             fontSize={$fontSize}
             groupBy={$groupByAuthors ? 'Authors' : null} />
     </div>

@@ -5,7 +5,7 @@
     import Tabulator from "tabulator-tables";
     import { afterUpdate, beforeUpdate } from "svelte";
 
-    export let db, columns;
+    export let db, columns, columnsSort;
     export let groupBy = null;
     export let fontSize = 16;
     export let index = "ID";
@@ -123,10 +123,7 @@
 
     afterUpdate(() => {
         tabulator = newTabulator();
-        tabulator.setSort([
-            { column: "Title", dir: "asc" }, //sort by this first
-            { column: "Authors", dir: "asc" }, //then by this
-        ]);
+        tabulator.setSort(columnsSort);
         setFilters();
         // console.log("tabulator afterUpdate", db);
     });
