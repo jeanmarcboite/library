@@ -142,8 +142,15 @@
         };
     };
 
-    const titleSorter = function (a, b, aRow, bRow, column, dir, sorterParams) {
-        return a.toLowerCase().localeCompare(b.toLowerCase());
+    const Mutator = (field: string) => {
+        return function (value, data, type, params, component) {
+            if (type == "edit") {
+                db.Books[data.ID][field] = value;
+                saveDB(db);
+            }
+
+            return value;
+        };
     };
 
     const authorSorter = function (
@@ -165,6 +172,10 @@
         let bs = bRow._row.data.AuthorSort;
 
         return as.toLowerCase().localeCompare(bs.toLowerCase());
+    };
+
+    const titleSorter = function (a, b, aRow, bRow, column, dir, sorterParams) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
     };
 
     const columns = [
@@ -214,18 +225,7 @@
             hozAlign: "left",
             widthGrow: 1,
             editor: "input",
-            mutator: function (value, data, type, params, component) {
-                if (type == "edit") {
-                    let book = db.Books[data.ID];
-                    //console.log("mutator: ", book, value);
-                    book.Title = value;
-                    //console.log("mutator: ", book);
-
-                    saveDB(db);
-                }
-
-                return value;
-            },
+            mutator: Mutator("Title"),
         },
         {
             title: "Date",
