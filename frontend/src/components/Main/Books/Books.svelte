@@ -11,7 +11,7 @@
         modalState,
     } from "../../../store";
 
-    import { tagEditor, tagList } from "./editors";
+    import { tagEditor, tagList, save, cancel } from "./editors";
     import { Mutator } from "./mutators";
     import { titleSorter, authorSorter } from "../sorters";
     import { StringArrayFormatter } from "./formatters";
@@ -152,7 +152,7 @@
                 title={editortitle}
                 {datalist}
                 {tags}
-                on:save={save}
+                on:save={(event) => save(db, event)}
                 on:cancel={cancel} />
         </Modal>
         <Tabulator
