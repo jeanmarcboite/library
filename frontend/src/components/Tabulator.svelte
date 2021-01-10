@@ -1,8 +1,9 @@
 <script lang="ts">
     import _ from "lodash";
     import "tabulator-tables/dist/css/tabulator_simple.css";
+    import { selectFilter } from "../store";
     import Tabulator from "tabulator-tables";
-    import { afterUpdate, onMount } from "svelte";
+    import { afterUpdate, beforeUpdate } from "svelte";
 
     export let db, columns;
     export let groupBy = null;
@@ -12,56 +13,61 @@
 
     var clearFilters = () => {};
 
-    onMount(() => {
+    const setFilters = () => {
         //Define variables for input elements
-        var fieldEl = document.getElementById("filter-field");
-        var typeEl = document.getElementById("filter-type");
-        var valueEl = document.getElementById("filter-value");
+        const fieldEl = document.getElementById("filter-field");
 
-        //Custom filter example
-        function customFilter(data) {
-            return data.car && data.rating < 3;
-        }
-
-        //Trigger setFilter function with correct parameters
-        function updateFilter() {
-            var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
-            var typeVal = typeEl.options[typeEl.selectedIndex].value;
-
-            var filter = filterVal == "function" ? customFilter : filterVal;
-
-            if (filterVal == "function") {
-                typeEl.disabled = true;
-                valueEl.disabled = true;
-            } else {
-                typeEl.disabled = false;
-                valueEl.disabled = false;
-            }
-
-            if (filterVal) {
-                tabulator.setFilter(filter, typeVal, valueEl.value);
-            }
-        }
-
-        //Update filters on value change
-        document
-            .getElementById("filter-field")
-            .addEventListener("change", updateFilter);
-        document
-            .getElementById("filter-type")
-            .addEventListener("change", updateFilter);
-        document
-            .getElementById("filter-value")
-            .addEventListener("keyup", updateFilter);
-
-        clearFilters = () => {
-            fieldEl.value = "";
-            typeEl.value = "=";
-            valueEl.value = "";
-
+        if (!fieldEl) {
             tabulator.clearFilter();
-        };
-    });
+        } else {
+            const typeEl = document.getElementById("filter-type");
+            const valueEl = document.getElementById("filter-value");
+
+            //Custom filter example
+            function customFilter(data) {
+                return data.car && data.rating < 3;
+            }
+
+            //Trigger setFilter function with correct parameters
+            function updateFilter() {
+                var filterVal = fieldEl.options[fieldEl.selectedIndex].value;
+                var typeVal = typeEl.options[typeEl.selectedIndex].value;
+
+                var filter = filterVal == "function" ? customFilter : filterVal;
+
+                if (filterVal == "function") {
+                    typeEl.disabled = true;
+                    valueEl.disabled = true;
+                } else {
+                    typeEl.disabled = false;
+                    valueEl.disabled = false;
+                }
+
+                if (filterVal) {
+                    tabulator.setFilter(filter, typeVal, valueEl.value);
+                }
+            }
+
+            //Update filters on value change
+            document
+                .getElementById("filter-field")
+                .addEventListener("change", updateFilter);
+            document
+                .getElementById("filter-type")
+                .addEventListener("change", updateFilter);
+            document
+                .getElementById("filter-value")
+                .addEventListener("keyup", updateFilter);
+
+            clearFilters = () => {
+                fieldEl.value = "";
+                typeEl.value = "=";
+                valueEl.value = "";
+
+                tabulator.clearFilter();
+            };
+        }
+    };
 
     const newTabulator = () => {
         let data = [...Object.keys(db.Books)].map((bookID) => {
@@ -121,7 +127,8 @@
             { column: "Title", dir: "asc" }, //sort by this first
             { column: "Authors", dir: "asc" }, //then by this
         ]);
-        console.log("tabulator afterUpdate", db);
+        setFilters();
+        // console.log("tabulator afterUpdate", db);
     });
 </script>
 
@@ -162,26 +169,27 @@
     }
 </style>
 
-<div>
-    <select id="filter-field">
-        {#each columns as col}
-            <option value={col.field}>{col.title}</option>
-        {/each}
-    </select>
+{#if $selectFilter}
+    <div>
+        <select id="filter-field">
+            {#each columns as col}
+                <option value={col.field}>{col.title}</option>
+            {/each}
+        </select>
 
-    <select id="filter-type">
-        <option value="like">like</option>
-        <option value="=">=</option>
-        <option value="!=">!=</option>
-    </select>
+        <select id="filter-type">
+            <option value="like">like</option>
+            <option value="=">=</option>
+            <option value="!=">!=</option>
+        </select>
 
-    <input id="filter-value" type="text" placeholder="value to filter" />
-    <button
-        on:click={clearFilters}
-        class="px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">Clear
-        Filters</button>
-</div>
-
+        <input id="filter-value" type="text" placeholder="value to filter" />
+        <button
+            on:click={clearFilters}
+            class="px-3 py-1 border rounded-sm outline-none focus:outline-none min-w-32">Clear
+            Filters</button>
+    </div>
+{/if}
 <div
     class="table-component"
     style="font-size: {fontSize}px;"

@@ -13,7 +13,7 @@
 
     import { tagEditor, tagList, save, cancel } from "./editors";
     import { Mutator } from "./mutators";
-    import { titleSorter, authorSorter } from "../sorters";
+    import { titleSorter, authorSorter } from "./sorters";
     import { StringArrayFormatter } from "./formatters";
 
     import Modal from "../Modal.svelte";

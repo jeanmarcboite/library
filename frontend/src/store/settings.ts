@@ -4,6 +4,7 @@ import { fwritable, intwritable } from './store'
 
 export const calibreDBTab = fwritable('calibreDBTab', false)
 export const groupByAuthors = fwritable('groupByAuthors', true)
+export const selectFilter = fwritable('selectFilter', false)
 
 function createFontSize(initialValue: number) {
   const { subscribe, set, update } = fwritable('fontSize', initialValue)

@@ -1,3 +1,3 @@
-import Book from './Book.svelte'
+import Books from './Books.svelte'
 
-export default Book
+export default Books

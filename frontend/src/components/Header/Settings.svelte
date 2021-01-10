@@ -1,4 +1,5 @@
 <script>
+    import { selectFilter } from "./../../store/settings";
     import TiCog from "svelte-icons/ti/TiCog.svelte";
     import Overlay from "svelte-overlay";
     import { calibreDBTab, groupByAuthors } from "../../store";
@@ -50,5 +51,10 @@
             bind:checked={$groupByAuthors}
             id="groupByAuthors"
             text="group by Author" />
+        <Switch
+            class="pl-40"
+            bind:checked={$selectFilter}
+            id="selectFilter"
+            text="filter" />
     </div>
 </Overlay>
