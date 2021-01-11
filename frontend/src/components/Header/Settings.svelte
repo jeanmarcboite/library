@@ -58,12 +58,12 @@
                 <legend>Table</legend>
 
                 <Switch
-                    class="pl-40"
+                    class="pl-20"
                     bind:checked={$groupByAuthors}
                     id="groupByAuthors"
                     text="group by Author" />
                 <Switch
-                    class="pl-40"
+                    class="pl-20"
                     bind:checked={$selectFilter}
                     id="selectFilter"
                     text="filter" />
