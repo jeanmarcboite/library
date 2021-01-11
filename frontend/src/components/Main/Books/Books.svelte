@@ -164,10 +164,15 @@
             title: "Size (MB)",
             field: "Size",
             hozAlign: "center",
-            formatter: (cell) =>
-                (cell._cell.row.data.Data.UncompressedSize / 1000000).toFixed(
-                    1
-                ),
+            formatter: (cell) => {
+                if (cell?._cell?.row) {
+                    return (
+                        cell._cell.row.data.Data.UncompressedSize / 1000000
+                    ).toFixed(1);
+                }
+
+                return "";
+            },
             sorter: (a, b, aRow, bRow) =>
                 aRow._row.data.Data.UncompressedSize >
                 bRow._row.data.Data.UncompressedSize,
