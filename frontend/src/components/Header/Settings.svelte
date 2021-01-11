@@ -52,21 +52,20 @@
     <!-- CONTENT -->
     <div
         slot="content"
-        class="flex items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
+        class="flex text-2xl bg-gray-800 rounded-sm shadow-lg settings">
         <form>
             <fieldset>
                 <legend>Table</legend>
-
-                <Switch
-                    class="pl-20"
-                    bind:checked={$groupByAuthors}
-                    id="groupByAuthors"
-                    text="group by Author" />
-                <Switch
-                    class="pl-20"
-                    bind:checked={$selectFilter}
-                    id="selectFilter"
-                    text="filter" />
+                <div class="flex flex-col items-start">
+                    <Switch
+                        bind:checked={$groupByAuthors}
+                        id="groupByAuthors"
+                        text="group by Author" />
+                    <Switch
+                        bind:checked={$selectFilter}
+                        id="selectFilter"
+                        text="filter" />
+                </div>
             </fieldset>
             <fieldset>
                 <legend>Debug</legend>
