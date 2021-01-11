@@ -22,10 +22,21 @@
     }
     .settings {
         border: 1px solid rgb(221, 221, 221);
-        background-color: burlywood;
+        background-color: #ccc;
         color: black;
         padding: 1em;
         width: max-content;
+    }
+    fieldset {
+        border: 2px solid grey;
+        border-radius: 8px;
+
+        background-color: #ccc;
+        padding: 16px;
+    }
+    legend {
+        color: grey;
+        padding: 3px 6px;
     }
 </style>
 
@@ -42,19 +53,28 @@
     <div
         slot="content"
         class="flex items-center justify-center text-2xl bg-gray-800 rounded-sm shadow-lg settings">
-        <Switch
-            bind:checked={$calibreDBTab}
-            id="calibreDBTab"
-            text="Show calibre DB" />
-        <Switch
-            class="pl-40"
-            bind:checked={$groupByAuthors}
-            id="groupByAuthors"
-            text="group by Author" />
-        <Switch
-            class="pl-40"
-            bind:checked={$selectFilter}
-            id="selectFilter"
-            text="filter" />
+        <form>
+            <fieldset>
+                <legend>Table</legend>
+
+                <Switch
+                    class="pl-40"
+                    bind:checked={$groupByAuthors}
+                    id="groupByAuthors"
+                    text="group by Author" />
+                <Switch
+                    class="pl-40"
+                    bind:checked={$selectFilter}
+                    id="selectFilter"
+                    text="filter" />
+            </fieldset>
+            <fieldset>
+                <legend>Debug</legend>
+                <Switch
+                    bind:checked={$calibreDBTab}
+                    id="calibreDBTab"
+                    text="Show calibre DB" />
+            </fieldset>
+        </form>
     </div>
 </Overlay>
