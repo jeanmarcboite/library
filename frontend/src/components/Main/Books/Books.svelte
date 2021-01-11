@@ -168,6 +168,9 @@
                 (cell._cell.row.data.Data.UncompressedSize / 1000000).toFixed(
                     1
                 ),
+            sorter: (a, b, aRow, bRow) =>
+                aRow._row.data.Data.UncompressedSize >
+                bRow._row.data.Data.UncompressedSize,
         },
         {
             title: "Rating",
