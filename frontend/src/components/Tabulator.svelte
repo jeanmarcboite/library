@@ -76,6 +76,8 @@
         return new Tabulator(tableComponent, {
             data, //link data to table
             index,
+            persistence: true,
+            movableColumns: true, //enable user movable columns
             groupBy,
             groupToggleElement: "header", //toggle group on click anywhere in the group header
 
