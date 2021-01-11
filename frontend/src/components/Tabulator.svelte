@@ -97,7 +97,7 @@
             },
             reactiveData: true, //enable data reactivity
             columns, //define table columns
-            layout: "fitDataFill", //fit columns to width of table (optional)
+            layout: "fitColumns", //fit columns to width of table (optional)
             responsiveLayout: "collapse",
             responsiveLayoutCollapseStartOpen: false,
 
